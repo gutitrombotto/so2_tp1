@@ -192,6 +192,30 @@ struct Estacion set_datos (char * buffer, const char *s)
 	
 }
 
+int write_datos_to_file(int numero_estacion, int cant_estaciones, struct Estacion estaciones[MAX_ESTACIONES], char * path){
+	FILE *fptr;
+	//fptr = fopen("datos.txt", "w");
+	fptr = fopen(path, "w");
+	if(fptr == NULL)
+	{
+		printf("Error!");
+		return 0;
+	}
+	
+//fprintf(fptr, "Este Archivo contiene los datos de la estacion numero: %d\n", numero_estacion);
+	 fprintf(fptr, "Numero \t Estacion \t \t Id Localidad \t Fecha \t Temperatura(°C) \t Humedad() \t  Punto Rocio \t Precipitacion \t Velocidad del Viento \t Direccion del Viento \t Presion \t Radicion Solar \t Temperaturas Suelo \t  Humedades Suelo \t Humedad Hoja\n");
+//fprintf(fptr, "Numero        Estacion         Id Localidad       Fecha         Temperatura         Humedad        Punto de Rocio       Precipitacion         Velocidad del Viento      Direccion del Viento       Direccion del Viento       Presion      Radicion Solar         Temperaturas del Suelo                Humedades del Suelo       Humedad Hoja        \n" );
+	for (int i = 0; i < cant_estaciones; i++){
+		if (estaciones[i].numero == numero_estacion){
+			//fprintf(fptr, "%d \t %s\n", estaciones[i].numero, estaciones[i].estacion);
+			fprintf(fptr, "%d \t %s \t %d \t %s \t %.2f \t %.2f \t %.2f \t %.2f\t %.2f\t %s \t %.2f \t %.2f \t %.2f \t %.2f , %s, %s\t \t  %s, %s, %s \t \t %s\n", estaciones[i].numero, estaciones[i].estacion, estaciones[i].id_localidad, estaciones[i].fecha, estaciones[i].temperatura, estaciones[i].humedad, estaciones[i].punto_rocio, estaciones[i].precipitacion, estaciones[i].velocidad_viento, estaciones[i].direccion_viento, estaciones[i].rafaga_max, estaciones[i].presion, estaciones[i].radiacion_solar, estaciones[i].temperatura_suelo1, estaciones[i].temperatura_suelo2, estaciones[i].temperatura_suelo3, estaciones[i].humedad_suelo1, estaciones[i].humedad_suelo2, estaciones[i].humedad_suelo3, estaciones[i].humedad_hoja);
+		}
+	}
+	fclose(fptr);
+
+	return 0;
+}
+
 
 int main(int argc, char **argv)
 {
@@ -200,7 +224,10 @@ int main(int argc, char **argv)
 	char *inname = "datos_meteorologicos_to_parse _test.csv";
 	FILE *infile; 
   	char line_buffer[BUFSIZ]; /* BUFSIZ is defined if you include stdio.h */
-	char line_number; 
+	char line_number;
+	char * path;
+	int error;
+	path = "datos.txt"; 
 
 	infile = fopen(inname, "r"); 
 	if (!infile) { 
@@ -216,29 +243,18 @@ int main(int argc, char **argv)
 		//est = set_datos(line_buffer, s);
 		printf("%s\n", line_buffer);
 		estaciones[line_number] = set_datos(line_buffer, s);
-	
-	
+
+
 	    ++line_number; /* note that the newline is in the buffer */
 	}
 
-	char sentence[1000];
-   FILE *fptr;
+	int numero_estacion = 30057;
+	int cant_estaciones = sizeof(estaciones) / sizeof(estaciones[0]);
 
-   fptr = fopen("datos.txt", "w");
-   if(fptr == NULL)
-   {
-      printf("Error!");
-      exit(1);
-   }
-int numero_estacion = 30057;
-fprintf(fptr, " Este Archivo contiene los datos de la estacion numero: %d\n", numero_estacion);
-fprintf(fptr, "Numero        Estacion         Id Localidad       Fecha         Temperatura         Humedad        Punto de Rocio       Precipitacion         Velocidad del Viento      Direccion del Viento       Rafaga Maxima        Presion      Radicion Solar         Temperaturas del Suelo                Humedades del Suelo       Humedad Hoja        \n" );
-int cant_estaciones = sizeof(estaciones) / sizeof(estaciones[0]);
-	for (int i = 0; i < cant_estaciones; i++){
-		if (estaciones[i].numero == numero_estacion){
-			fprintf(fptr, "%s \n", estaciones[i].estacion);
-		}
+	error = write_datos_to_file(numero_estacion,cant_estaciones,estaciones,path);
+	if (!error)
+	{
+		printf("Su archivo llamdo %s se ha escrito correctamente con datos de la estacion %d \n", path, numero_estacion);
 	}
-   fclose(fptr);
 
-}	
+}
