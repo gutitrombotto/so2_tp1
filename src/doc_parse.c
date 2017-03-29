@@ -221,18 +221,20 @@ int main(int argc, char **argv)
 {
 	struct Estacion estaciones[MAX_ESTACIONES];
 	const char s[2] = ",";
-	char *inname = "datos_meteorologicos_to_parse _test.csv";
+	char *inname = "datos_meteorologicos_modif.csv";
 	FILE *infile; 
   	char line_buffer[BUFSIZ]; /* BUFSIZ is defined if you include stdio.h */
 	char line_number;
 	char * path;
 	int error;
 	path = "datos.txt"; 
-
+	
 	infile = fopen(inname, "r"); 
 	if (!infile) { 
 		printf("Couldn't open file %s for reading.\n", inname); 
-		return 0;
+		perror("Error while opening the file.");
+      	exit(EXIT_FAILURE);
+		
 	}
 	printf("Opened file %s for reading.\n", inname); 
 	line_number = 0; 
@@ -241,20 +243,23 @@ int main(int argc, char **argv)
 		//estaciones[line_number] = set_datos(line_buffer, s); 
 		//Estacion set_datos (char * buffer, const char *s)
 		//est = set_datos(line_buffer, s);
-		printf("%s\n", line_buffer);
-		estaciones[line_number] = set_datos(line_buffer, s);
-
+		if(line_number > 2){
+			printf("%s\n", line_buffer);
+			estaciones[line_number] = set_datos(line_buffer, s);		
+		}
 
 	    ++line_number; /* note that the newline is in the buffer */
 	}
 
+
+	exit(0);
 	int numero_estacion = 30057;
 	int cant_estaciones = sizeof(estaciones) / sizeof(estaciones[0]);
 
 	error = write_datos_to_file(numero_estacion,cant_estaciones,estaciones,path);
 	if (!error)
 	{
-		printf("Su archivo llamdo %s se ha escrito correctamente con datos de la estacion %d \n", path, numero_estacion);
+		printf("Su archivo llamado %s se ha escrito correctamente con datos de la estacion %d \n", path, numero_estacion);
 	}
 
 }
