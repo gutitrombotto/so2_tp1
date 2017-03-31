@@ -5,6 +5,8 @@
 #include <getopt.h>
 #include <errno.h>
 #include <stddef.h> /* offsetof */
+#include <time.h>
+
 
 
 #define MAX_BUFFER 2048
@@ -20,7 +22,7 @@ struct Estacion {
 	int  numero;
 	char  *estacion;
 	int  id_localidad;
-	char  *fecha;
+	struct tm  fecha;
 	float  temperatura;
 	float  humedad;
 	float  punto_rocio;
@@ -43,6 +45,17 @@ char * test_dato(char * token){
 	if(!strcmp(token, "--")) return "-1";
 	else return token;
 }	
+struct tm parse_date (const char *input)
+{
+  struct tm tm;
+  /* First clear the result structure.  */
+  memset (&tm, 0, sizeof (struct tm));
+
+  /* Try the ISO format first.  */
+  strptime (input, "%d/%m/%Y %H:%M", &tm);
+
+  return tm;
+}
 
 struct Estacion set_datos (char * buffer, const char *s)
 {
@@ -72,7 +85,9 @@ struct Estacion set_datos (char * buffer, const char *s)
 			
 		} else if (contador==3)
 		{
-			est.fecha=strdup(token);
+			//est.fecha=strdup(token);
+			est.fecha=parse_date(token);
+			
 			//memset(est.fecha, '\0', sizeof(token));
 			//strcpy(est.fecha, token);
 			//est.fecha = token;
@@ -245,7 +260,8 @@ int main(int argc, char **argv)
 		//est = set_datos(line_buffer, s);
 		if(line_number > 2){
 			printf("%s\n", line_buffer);
-			estaciones[line_number] = set_datos(line_buffer, s);		
+			estaciones[line_number] = set_datos(line_buffer, s);
+			printf("%d\n", estaciones[line_number].fecha.tm_mon);		
 		}
 
 	    ++line_number; /* note that the newline is in the buffer */
