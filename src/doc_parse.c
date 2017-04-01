@@ -47,14 +47,22 @@ char * test_dato(char * token){
 }	
 struct tm parse_date (const char *input)
 {
-  struct tm tm;
-  /* First clear the result structure.  */
-  memset (&tm, 0, sizeof (struct tm));
+	printf("Estoy parseando data\n");
+ struct tm tm;
 
-  /* Try the ISO format first.  */
-  strptime (input, "%d/%m/%Y %H:%M", &tm);
+ memset(&tm, 0, sizeof(struct tm));
+ if (strptime(input, "%d/%m/%Y %H:%M", &tm) == NULL){
+ 	printf("ERROR DE PARSEo \n");
+ }
+ 
+ return tm;
+}
 
-  return tm;
+int print_fecha(struct tm tm){
+  char buf[255];
+  strftime(buf, sizeof(buf), "%d/%m/%Y %H:%M", &tm);
+  printf("%s\n", buf);
+  return 1;
 }
 
 struct Estacion set_datos (char * buffer, const char *s)
@@ -67,9 +75,14 @@ struct Estacion set_datos (char * buffer, const char *s)
    /* walk through other tokens */
 	while( token != NULL ) 
 	{
+		printf("%d\n", contador);
+		//printf("%d\n", contador);
+		//printf("%s\n", token);
 		//printf( " %s\n", token );
 		if (contador==0)
 		{
+						printf("%s\n", token);
+
 			est.numero = atoi(token);
 		} else if (contador==1)
 		{
@@ -85,8 +98,11 @@ struct Estacion set_datos (char * buffer, const char *s)
 			
 		} else if (contador==3)
 		{
+			printf("%s\n", token);
 			//est.fecha=strdup(token);
 			est.fecha=parse_date(token);
+
+			printf("%d\n", est.fecha.tm_min);
 			
 			//memset(est.fecha, '\0', sizeof(token));
 			//strcpy(est.fecha, token);
@@ -207,7 +223,8 @@ struct Estacion set_datos (char * buffer, const char *s)
 	
 }
 
-int write_datos_to_file(int numero_estacion, int cant_estaciones, struct Estacion estaciones[MAX_ESTACIONES], char * path){
+int write_datos_to_file(int numero_estacion, int cant_estaciones, struct Estacion estaciones[MAX_ESTACIONES], char * path)
+{
 	FILE *fptr;
 	//fptr = fopen("datos.txt", "w");
 	fptr = fopen(path, "w");
@@ -241,7 +258,9 @@ int main(int argc, char **argv)
   	char line_buffer[BUFSIZ]; /* BUFSIZ is defined if you include stdio.h */
 	char line_number;
 	char * path;
+	char * buffer;
 	int error;
+	char buf[255];
 	path = "datos.txt"; 
 	
 	infile = fopen(inname, "r"); 
@@ -261,9 +280,11 @@ int main(int argc, char **argv)
 		if(line_number > 2){
 			printf("%s\n", line_buffer);
 			estaciones[line_number] = set_datos(line_buffer, s);
-			printf("%d\n", estaciones[line_number].fecha.tm_mon);		
+			//int i = print_fecha(estaciones[line_number].fecha);
+						//printf("%d\n", estaciones[line_number].fecha.tm_mon);				
+						//printf("%d\n", estaciones[line_number].fecha.tm_mon);
 		}
-
+		printf("%d\n", line_number);
 	    ++line_number; /* note that the newline is in the buffer */
 	}
 

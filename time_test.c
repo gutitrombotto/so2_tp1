@@ -47,34 +47,38 @@ int main(void)
 
 struct tm parse_date (const char *input)
 {
-  struct tm tm;
-  char *cp;
-  /* First clear the result structure.  */
-  cp = memset (&tm, 0, sizeof (struct tm));
+ struct tm tm;
 
-  /* Try the ISO format first.  */
-  strptime (input, "%d/%m/%Y %H:%M", &tm);
+ memset(&tm, 0, sizeof(struct tm));
+ strptime(input, "%d/%m/%Y %H:%M", &tm);
+ return tm;
+}
 
-  return tm;
+int print_fecha(struct tm tm){
+  char buf[255];
+  strftime(buf, sizeof(buf), "%d/%m/%Y %H:%M", &tm);
+  printf("%s\n", buf);
+  return 1;
 }
      
        int main(void)
        {
+
+          struct tm tm;
+           char buf[255];
+           char * str_fecha;
+           int i;
+           char * input = "24/12/2006 00:00";
+
+           //memset(&tm, 0, sizeof(struct tm));
+           //strptime("24/12/2006 00:00", "%d/%m/%Y %H:%M", &tm);
+           tm = parse_date(input); 
+           //strftime(buf, sizeof(buf), "%d/%m/%Y %H:%M", &tm);
+           i = print_fecha(tm);
+           puts(str_fecha);
+           exit(EXIT_SUCCESS);
         // char *strptime(const char *s, const char *format, struct tm *tm)
-           struct tm tm;
-           //char buf[256];
-
-           char * pc;
-           char * buf;
-           buf = "24/12/2006 00:00";
-          //strcpy(buf,"06/02/2017 15:40");
-           printf("%s\n", buf);
-           tm = parse_date(buf);
-           //strptime(buf, "%d/%m/%Y %R", &tm);
-
-          printf("tm_mon:  %d\n",tm.tm_mon);
-          printf("tm_year:  %d\n",tm.tm_year);
-
+         
                     
 
 
