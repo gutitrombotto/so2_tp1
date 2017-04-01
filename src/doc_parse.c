@@ -102,7 +102,7 @@ struct Estacion set_datos (char * buffer, const char *s)
 			//est.fecha=strdup(token);
 			est.fecha=parse_date(token);
 
-			printf("%d\n", est.fecha.tm_min);
+			printf("%d\n", est.fecha.tm_mon);
 			
 			//memset(est.fecha, '\0', sizeof(token));
 			//strcpy(est.fecha, token);
@@ -261,6 +261,8 @@ int main(int argc, char **argv)
 	char * buffer;
 	int error;
 	char buf[255];
+	int arry_index;
+	arry_index = 0;
 	path = "datos.txt"; 
 	
 	infile = fopen(inname, "r"); 
@@ -279,12 +281,13 @@ int main(int argc, char **argv)
 		//est = set_datos(line_buffer, s);
 		if(line_number > 2){
 			printf("%s\n", line_buffer);
-			estaciones[line_number] = set_datos(line_buffer, s);
+			estaciones[arry_index] = set_datos(line_buffer, s);
 			//int i = print_fecha(estaciones[line_number].fecha);
 						//printf("%d\n", estaciones[line_number].fecha.tm_mon);				
 						//printf("%d\n", estaciones[line_number].fecha.tm_mon);
+			arry_index++;
 		}
-		printf("%d\n", line_number);
+		//printf("%d\n", line_number);
 	    ++line_number; /* note that the newline is in the buffer */
 	}
 
