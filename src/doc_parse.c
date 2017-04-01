@@ -276,21 +276,21 @@ int main(int argc, char **argv)
 	line_number = 0; 
 	while (fgets(line_buffer, sizeof(line_buffer), infile)!=NULL) 
 	{
-		//estaciones[line_number] = set_datos(line_buffer, s); 
-		//Estacion set_datos (char * buffer, const char *s)
-		//est = set_datos(line_buffer, s);
+		
 		if(line_number > 2){
 			printf("%s\n", line_buffer);
 			estaciones[arry_index] = set_datos(line_buffer, s);
-			//int i = print_fecha(estaciones[line_number].fecha);
-						//printf("%d\n", estaciones[line_number].fecha.tm_mon);				
-						//printf("%d\n", estaciones[line_number].fecha.tm_mon);
 			arry_index++;
 		}
 		//printf("%d\n", line_number);
 	    ++line_number; /* note that the newline is in the buffer */
 	}
 
+	for (int i = 0; i < 8; ++i)
+	{
+		//printf("Numero estacion %d\n", estaciones[i].fecha.tm_min);
+		print_fecha(estaciones[i].fecha);
+	}
 
 	exit(0);
 	int numero_estacion = 30057;
