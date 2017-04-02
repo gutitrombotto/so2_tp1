@@ -33,12 +33,12 @@ struct Estacion {
 	float  presion;
 	float  radiacion_solar;
 	float  temperatura_suelo1;
-	char *  temperatura_suelo2; // No tiene datos
-	char *  temperatura_suelo3; // No tiene datos
-	char *  humedad_suelo1; // No tienen datos de aca hasta abajos
-	char *  humedad_suelo2;
-	char *  humedad_suelo3;
-	char *  humedad_hoja;
+	float  temperatura_suelo2; // No tiene datos
+	float  temperatura_suelo3; // No tiene datos
+	float  humedad_suelo1; // No tienen datos de aca hasta abajos
+	float  humedad_suelo2;
+	float  humedad_suelo3;
+	float  humedad_hoja;
 } estacion; 
 
 char * test_dato(char * token){
@@ -47,7 +47,6 @@ char * test_dato(char * token){
 }	
 struct tm parse_date (const char *input)
 {
-	printf("Estoy parseando data\n");
  struct tm tm;
 
  memset(&tm, 0, sizeof(struct tm));
@@ -75,14 +74,11 @@ struct Estacion set_datos (char * buffer, const char *s)
    /* walk through other tokens */
 	while( token != NULL ) 
 	{
-		printf("%d\n", contador);
 		//printf("%d\n", contador);
-		//printf("%s\n", token);
+		//
 		//printf( " %s\n", token );
 		if (contador==0)
 		{
-						printf("%s\n", token);
-
 			est.numero = atoi(token);
 		} else if (contador==1)
 		{
@@ -98,11 +94,9 @@ struct Estacion set_datos (char * buffer, const char *s)
 			
 		} else if (contador==3)
 		{
-			printf("%s\n", token);
 			//est.fecha=strdup(token);
 			est.fecha=parse_date(token);
 
-			printf("%d\n", est.fecha.tm_mon);
 			
 			//memset(est.fecha, '\0', sizeof(token));
 			//strcpy(est.fecha, token);
@@ -171,42 +165,48 @@ struct Estacion set_datos (char * buffer, const char *s)
 		}else if (contador==14)
 		{
 			
-			est.temperatura_suelo2 = "No hay datos";
+			token = test_dato(token);
+			est.temperatura_suelo2 = atof(token);
 			//strcpy(estacion.punto_rocio, atof(token));
 			
 		}
 		else if (contador==15)
 		{
 			
-			est.temperatura_suelo3 = "No hay datos";
+			token = test_dato(token);
+			est.temperatura_suelo3 = atof(token);
 			//strcpy(estacion.punto_rocio, atof(token));
 			
 		}
 		else if (contador==16)
 		{
 			
-			est.humedad_suelo1 = "No hay datos";
+			token = test_dato(token);
+			est.humedad_suelo1 = atof(token);
 			//strcpy(estacion.punto_rocio, atof(token));
 			
 		}
 		else if (contador==17)
 		{
 			
-			est.humedad_suelo2 = "No hay datos";
+			token = test_dato(token);
+			est.humedad_suelo2 = atof(token);
 			//strcpy(estacion.punto_rocio, atof(token));
 			
 		}
 		else if (contador==18)
 		{
 			
-			est.humedad_suelo3 = "No hay datos";
+			token = test_dato(token);
+			est.humedad_suelo3 = atof(token);
 			//strcpy(estacion.punto_rocio, atof(token));
 			
 		}
 		else if (contador==19)
 		{
 			
-			est.humedad_hoja = "No hay datos";
+			token = test_dato(token);
+			est.humedad_hoja = atof(token);
 			//strcpy(estacion.punto_rocio, atof(token));
 			
 		}
@@ -249,7 +249,82 @@ int write_datos_to_file(int numero_estacion, int cant_estaciones, struct Estacio
 
 	return 0;
 }
+int test_datos(struct Estacion estacion){
+	float uno = -1.000000; 
 
+	if(estacion.temperatura!=uno){
+		printf("Temperatura : SI \n");
+	} else {
+		printf("Temperatura : NO\n");
+	}
+	if(estacion.humedad!=uno){
+		printf("humedad: SI\n");
+	} else {
+		printf("humedad: NO\n");
+	}
+	if(estacion.punto_rocio!=uno){
+		printf("punto_rocio: SI\n");
+	} else {
+		printf("punto_rocio: NO\n");
+	}
+	if(estacion.precipitacion!=uno){
+		printf("precipitacion: SI\n");
+	} else {
+		printf("precipitacion: NO\n");
+	}
+	if(estacion.velocidad_viento!=uno){
+		printf("velocidad_viento: SI\n");
+	} else {
+		printf("velocidad_viento: NO\n");
+	}
+	if(estacion.rafaga_max!=uno){
+		printf("rafaga_max: SI\n");
+	} else {
+		printf("rafaga_max: NO\n");
+	}
+	if(estacion.presion!=uno){
+		printf("presion: SI\n");
+	} else {
+		printf("presion: NO\n");
+	}
+	if(estacion.radiacion_solar!=uno){
+		printf("radiacion_solar: SI\n");
+	} else {
+		printf("radiacion_solar: NO\n");
+	}
+	if(estacion.temperatura_suelo3!=uno || estacion.temperatura_suelo1 != uno || estacion.temperatura_suelo2 != uno){
+		printf("Temperatura suelo: SI\n");
+	} else {
+		printf("Temperatura suelo: NO\n");
+	}
+	if(estacion.humedad_hoja!=uno){
+		printf("humedad_hoja: SI\n");
+	} else {
+		printf("humedad_hoja: NO\n");
+	}
+
+	return 0;
+}
+
+int listar_estaciones(struct Estacion estaciones[MAX_ESTACIONES])
+{
+	for (int i = 0; i < MAX_ESTACIONES; ++i)
+	{
+		int numero_estacion = estaciones[i].numero;
+
+		if(numero_estacion!=estaciones[i+1].numero){
+
+			printf("\t Variables de la estacion %s\n", estaciones[i].estacion);
+			int test_error = test_datos(estaciones[i]);
+
+			if(test_error){
+				printf("No se pudo examinar estaciones\n");
+			}
+			
+		}
+	}
+	return 0;
+}
 int main(int argc, char **argv)
 {
 	struct Estacion estaciones[MAX_ESTACIONES];
@@ -259,13 +334,11 @@ int main(int argc, char **argv)
   	char line_buffer[BUFSIZ]; /* BUFSIZ is defined if you include stdio.h */
 	char line_number;
 	char * path;
-	char * buffer;
 	int error;
-	char buf[255];
 	int arry_index;
 	char str_fecha[255];
 	arry_index = 0;
-	path = "datos.txt"; 
+	path = "datos.txt";
 	
 	infile = fopen(inname, "r"); 
 	if (!infile) { 
@@ -288,23 +361,32 @@ int main(int argc, char **argv)
 	    ++line_number; /* note that the newline is in the buffer */
 	}
 
-	for (int i = 0; i < 8; ++i)
+	int err = listar_estaciones(estaciones);
+	/*for (int i = 0; i < MAX_ESTACIONES; ++i)
 	{
-		//printf("Numero estacion %d\n", estaciones[i].fecha.tm_min);
-		//print_fecha(estaciones[i].fecha);
-		strftime(str_fecha, sizeof(str_fecha), "%d/%m/%Y %H:%M", &estaciones[i].fecha);
-		//str_fecha = buffer_fecha(estaciones[i].fecha, str_fecha);
-		printf("%s\n", str_fecha);
-	}
+		int numero_estacion = estaciones[i].numero;
 
-	//exit(0);
+		if(numero_estacion!=estaciones[i+1].numero){
+
+			printf("\t Variables de la estacion %s\n", estaciones[i].estacion);
+			int test_error = test_datos(estaciones[i]);
+
+			if(test_error){
+				printf("No se pudo examinar estaciones\n");
+			}
+			
+		}
+	}*/
+		//exit(0);
 	int numero_estacion = 30057;
 	int cant_estaciones = sizeof(estaciones) / sizeof(estaciones[0]);
 
-	error = write_datos_to_file(numero_estacion,cant_estaciones,estaciones,path);
+	/*error = write_datos_to_file(numero_estacion,cant_estaciones,estaciones,path);
 	if (!error)
 	{
 		printf("Su archivo llamado %s se ha escrito correctamente con datos de la estacion %d \n", path, numero_estacion);
 	}
+    */
+    exit(EXIT_SUCCESS);
 
 }
