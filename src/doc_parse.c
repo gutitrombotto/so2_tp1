@@ -225,6 +225,7 @@ struct Estacion set_datos (char * buffer, const char *s)
 
 int write_datos_to_file(int numero_estacion, int cant_estaciones, struct Estacion estaciones[MAX_ESTACIONES], char * path)
 {
+	char str_fecha[255];
 	FILE *fptr;
 	//fptr = fopen("datos.txt", "w");
 	fptr = fopen(path, "w");
@@ -239,15 +240,15 @@ int write_datos_to_file(int numero_estacion, int cant_estaciones, struct Estacio
 //fprintf(fptr, "Numero        Estacion         Id Localidad       Fecha         Temperatura         Humedad        Punto de Rocio       Precipitacion         Velocidad del Viento      Direccion del Viento       Direccion del Viento       Presion      Radicion Solar         Temperaturas del Suelo                Humedades del Suelo       Humedad Hoja        \n" );
 	for (int i = 0; i < cant_estaciones; i++){
 		if (estaciones[i].numero == numero_estacion){
+			strftime(str_fecha, sizeof(str_fecha), "%d/%m/%Y %H:%M", &estaciones[i].fecha);
 			//fprintf(fptr, "%d \t %s\n", estaciones[i].numero, estaciones[i].estacion);
-			fprintf(fptr, "%d \t %s \t %d \t %s \t %.2f \t %.2f \t %.2f \t %.2f\t %.2f\t %s \t %.2f \t %.2f \t %.2f \t %.2f , %s, %s\t \t  %s, %s, %s \t \t %s\n", estaciones[i].numero, estaciones[i].estacion, estaciones[i].id_localidad, estaciones[i].fecha, estaciones[i].temperatura, estaciones[i].humedad, estaciones[i].punto_rocio, estaciones[i].precipitacion, estaciones[i].velocidad_viento, estaciones[i].direccion_viento, estaciones[i].rafaga_max, estaciones[i].presion, estaciones[i].radiacion_solar, estaciones[i].temperatura_suelo1, estaciones[i].temperatura_suelo2, estaciones[i].temperatura_suelo3, estaciones[i].humedad_suelo1, estaciones[i].humedad_suelo2, estaciones[i].humedad_suelo3, estaciones[i].humedad_hoja);
+			fprintf(fptr, "%d \t %s \t %d \t %s \t %.2f \t %.2f \t %.2f \t %.2f\t %.2f\t %s \t %.2f \t %.2f \t %.2f \t %.2f , %s, %s\t \t  %s, %s, %s \t \t %s\n", estaciones[i].numero, estaciones[i].estacion, estaciones[i].id_localidad, str_fecha, estaciones[i].temperatura, estaciones[i].humedad, estaciones[i].punto_rocio, estaciones[i].precipitacion, estaciones[i].velocidad_viento, estaciones[i].direccion_viento, estaciones[i].rafaga_max, estaciones[i].presion, estaciones[i].radiacion_solar, estaciones[i].temperatura_suelo1, estaciones[i].temperatura_suelo2, estaciones[i].temperatura_suelo3, estaciones[i].humedad_suelo1, estaciones[i].humedad_suelo2, estaciones[i].humedad_suelo3, estaciones[i].humedad_hoja);
 		}
 	}
 	fclose(fptr);
 
 	return 0;
 }
-
 
 int main(int argc, char **argv)
 {
@@ -262,6 +263,7 @@ int main(int argc, char **argv)
 	int error;
 	char buf[255];
 	int arry_index;
+	char str_fecha[255];
 	arry_index = 0;
 	path = "datos.txt"; 
 	
@@ -289,10 +291,13 @@ int main(int argc, char **argv)
 	for (int i = 0; i < 8; ++i)
 	{
 		//printf("Numero estacion %d\n", estaciones[i].fecha.tm_min);
-		print_fecha(estaciones[i].fecha);
+		//print_fecha(estaciones[i].fecha);
+		strftime(str_fecha, sizeof(str_fecha), "%d/%m/%Y %H:%M", &estaciones[i].fecha);
+		//str_fecha = buffer_fecha(estaciones[i].fecha, str_fecha);
+		printf("%s\n", str_fecha);
 	}
 
-	exit(0);
+	//exit(0);
 	int numero_estacion = 30057;
 	int cant_estaciones = sizeof(estaciones) / sizeof(estaciones[0]);
 

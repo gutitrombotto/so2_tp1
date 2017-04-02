@@ -1,0 +1,3 @@
+Numero 	 Estacion 	 	 Id Localidad 	 Fecha 	 Temperatura(°C) 	 Humedad() 	  Punto Rocio 	 Precipitacion 	 Velocidad del Viento 	 Direccion del Viento 	 Presion 	 Radicion Solar 	 Temperaturas Suelo 	  Humedades Suelo 	 Humedad Hoja
+30057 	 MagyaCba 60 cuadras 	 0 	 01/02/2017 00:00 	 20.60 	 77.30 	 16.50 	 0.00	 0.80	 SUDOESTE SUR 	 2.50 	 961.90 	 0.00 	 25.70 , No hay datos, No hay datos	 	  No hay datos, No hay datos, No hay datos 	 	 No hay datos
+30057 	 MagyaCba 60 cuadras 	 0 	 01/02/2017 00:10 	 20.60 	 76.50 	 16.30 	 0.00	 0.60	 SUDOESTE SUR 	 2.30 	 961.90 	 0.00 	 25.60 , No hay datos, No hay datos	 	  No hay datos, No hay datos, No hay datos 	 	 No hay datos
