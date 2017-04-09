@@ -308,10 +308,14 @@ int test_datos(struct Estacion estacion){
 
 int listar_estaciones(struct Estacion estaciones[MAX_ESTACIONES])
 {
+	struct Estacion temp;
+	//memset(temp,0,sizeof(Estacion));
+	strcpy(temp.estacion, estaciones[0].estacion);
+	printf("%s\n", temp.estacion);
 	for (int i = 0; i < MAX_ESTACIONES; ++i)
 	{
 		int numero_estacion = estaciones[i].numero;
-
+		printf("%d\n", numero_estacion);
 		if(numero_estacion!=estaciones[i+1].numero){
 
 			printf("\t Variables de la estacion %s\n", estaciones[i].estacion);
@@ -324,6 +328,32 @@ int listar_estaciones(struct Estacion estaciones[MAX_ESTACIONES])
 		}
 	}
 	return 0;
+}
+
+float diario_precipitacion(int numero_estacion, struct Estacion estaciones[MAX_ESTACIONES]){
+	float acumulado;
+	acumulado = 0.0;
+	for (int i = 0; i < MAX_ESTACIONES; ++i)
+	{
+		for (int j = 1; j < 30; ++j)
+		{
+			if(estaciones[i].numero == numero_estacion){
+
+				if (estaciones[j].fecha.tm_mday == j)
+				{
+					acumulado = acumulado + estaciones[i].precipitacion;
+				}		
+
+			}
+		}
+
+		printf("%d\n", estaciones[i].numero);
+
+		
+		//printf("%d\n", acumulado);
+	}
+	printf("%.2f\n", acumulado);
+	return acumulado;
 }
 int main(int argc, char **argv)
 {
@@ -362,6 +392,9 @@ int main(int argc, char **argv)
 	}
 
 	int err = listar_estaciones(estaciones);
+	//int numero_estacion = 30135;
+
+	///float precipitacion = diario_precipitacion(numero_estacion, estaciones);
 	/*for (int i = 0; i < MAX_ESTACIONES; ++i)
 	{
 		int numero_estacion = estaciones[i].numero;
@@ -378,7 +411,7 @@ int main(int argc, char **argv)
 		}
 	}*/
 		//exit(0);
-	int numero_estacion = 30057;
+	
 	int cant_estaciones = sizeof(estaciones) / sizeof(estaciones[0]);
 
 	/*error = write_datos_to_file(numero_estacion,cant_estaciones,estaciones,path);
