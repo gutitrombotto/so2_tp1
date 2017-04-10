@@ -16,7 +16,7 @@ SRV_MAIN=exe/server
 
 all: prueba cppcheck
 
-prueba: $(OBJETOS) 
+server: $(OBJETOS) 
 	gcc $(SRV_FUENTES) $(CFLAGS) -o $(SRV_MAIN) $(OBJETOS)
 
 normal:
