@@ -582,7 +582,91 @@ int promedio_variables(struct Estacion *estaciones[MAX_ESTACIONES])
 	return 0;
 }
 
-int descargar(struct Estacion *estaciones[MAX_ESTACIONES], int numero_estacion)
+void validar_datos(struct Estacion *estacion)
 {
+	float uno = -1.000000;
+	if (estacion->temperatura_suelo1 == uno)
+	{
+		estacion->temperatura_suelo1 = 0;
+	}
+	if (estacion->temperatura_suelo2 == uno)
+	{
+		estacion->temperatura_suelo2 = 0;
+	}
+	if (estacion->temperatura_suelo3 == uno)
+	{
+		estacion->temperatura_suelo3 = 0;
+	}
+	if (estacion->humedad_suelo1 == uno)
+	{
+		estacion->humedad_suelo1 = 0;
+	}
+	if (estacion->humedad_suelo2 == uno)
+	{
+		estacion->humedad_suelo2 = 0;
+	}
+	if (estacion->humedad_suelo3 == uno)
+	{
+		estacion->humedad_suelo3 = 0;
+	}
+	if (estacion->humedad_hoja == uno)
+	{
+		estacion->humedad_hoja = 0;
+	}
+	
+	return;
+}
+int descargar(struct Estacion *estaciones[MAX_ESTACIONES], int numero_estacion, char * path)
+{
+	FILE *infile; 
+	int est_index[4031];
+	infile = fopen(path, "w+");
+	int j = 0; 
+		for (int i = 0; i < MAX_ESTACIONES; ++i) //recorro estaciones
+		{
+			if (estaciones[i] == NULL)
+			{
+				break;
+
+			}
+			if (estaciones[i]->numero == numero_estacion)
+			{
+				est_index[j] = i;
+				j++;
+			}
+
+		}
+
+
+	if (!infile) { 
+		printf("Couldn't open file %s for writing\n", path); 
+		perror("Error while opening the file");
+		exit(EXIT_FAILURE);
+		
+	} else {
+		fprintf(infile, "\tVariable de la estacion %s \n \n", estaciones[est_index[j-1]]->estacion);
+		fprintf(infile, "Temp\tHume\tPto.Ro\tPrecipt\tVel.Vie\tRaf.Vie\t  Pres\tRad.Sol\tTemp_S1\tTemp_S2\tTemp_S3\tHum_S1\tHum_S2\tHum_S3\tHum_Hoja\n");
+		for (int i = 0; i < j; ++i)
+		{
+			validar_datos(estaciones[est_index[i]]);
+			fprintf(infile, "%.2f \t %.2f \t %.2f\t %.2f\t %.2f\t %.2f\t %.2f\t %.2f\t %.2f\t %.2f\t %.2f\t %.2f\t %.2f\t %.2f\t %.2f\n",
+			estaciones[est_index[i]]->temperatura,
+			estaciones[est_index[i]]->humedad,
+			estaciones[est_index[i]]->punto_rocio,
+			estaciones[est_index[i]]->precipitacion,
+			estaciones[est_index[i]]->velocidad_viento,
+			estaciones[est_index[i]]->rafaga_max,
+			estaciones[est_index[i]]->presion,
+			estaciones[est_index[i]]->radiacion_solar,
+			estaciones[est_index[i]]->temperatura_suelo1,
+			estaciones[est_index[i]]->temperatura_suelo2,
+			estaciones[est_index[i]]->temperatura_suelo2,
+			estaciones[est_index[i]]->humedad_suelo1,
+			estaciones[est_index[i]]->humedad_suelo2,
+			estaciones[est_index[i]]->humedad_suelo3,
+			estaciones[est_index[i]]->humedad_hoja);
+
+		}
+	}
 	return 0;
 }

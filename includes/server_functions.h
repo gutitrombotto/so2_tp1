@@ -26,6 +26,7 @@ int promedio_variables(struct Estacion *estaciones[MAX_ESTACIONES]);
 
 int mensual_precipitacion(struct Estacion *estaciones[MAX_ESTACIONES], int numero_estacion);
 
-int descargar(struct Estacion *estaciones[MAX_ESTACIONES], int numero_estacion);
+int descargar(struct Estacion *estaciones[MAX_ESTACIONES], int numero_estacion, char * path);
 
+void validar_datos(struct Estacion *estacion);
 #endif

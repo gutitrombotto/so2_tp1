@@ -16,10 +16,10 @@ int main(int argc, char **argv)
 	int line_number;
 	int  numero_estacion = 30061;
 	//	struct tm tm;
-	//char * path;
+	char * path;
 	//int error;
 	//struct Estacion *est;
-	//path = "datos->txt";
+	path = "datos.txt";
 	//char buf_fecha[255];
 	int arr_cont;
 	arr_cont = 0;
@@ -48,7 +48,8 @@ int main(int argc, char **argv)
 
 	}
 	
-	int err = listar_estaciones(estaciones);
+	int err = descargar(estaciones, numero_estacion,path);
+	//int err = listar_estaciones(estaciones);
 	//int err = mensual_precipitacion(estaciones, numero_estacion);
 	//int err = listar_estaciones(estaciones);
 
