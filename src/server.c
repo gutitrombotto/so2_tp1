@@ -3,15 +3,18 @@
 
 
 
+
 int main(int argc, char **argv)
 {
 	struct Estacion *estaciones[MAX_ESTACIONES];
+    char buffer[26];
+    //estaciones = malloc(MAX_ESTACIONES * sizeof(struct Estacion ));
 	const char s[2] = ",";
-	char *inname = "datos_meteorologicos_modif.csv";
+	char *inname = "datos_meteorologicos.CSV";
 	FILE *infile; 
   	char line_buffer[BUFSIZ]; /* BUFSIZ is defined if you include stdio->h */
-	char line_number;
-	int  numero_estacion = 30135;
+	int line_number;
+	int  numero_estacion = 30061;
 	//	struct tm tm;
 	//char * path;
 	//int error;
@@ -35,20 +38,22 @@ int main(int argc, char **argv)
 	{
 		
 		if(line_number > 2){
-			printf("%s\n", line_buffer);
-			
+			//	printf("%s\n", line_buffer);
 			estaciones[arr_cont] = parse_data(line_buffer,s);
 			arr_cont ++;
 		}
 
 
 	    ++line_number; /* note that the newline is in the buffer */
-	}
 
-	int err = precipitacion_diario(estaciones, numero_estacion);
+	}
+	
+	int err = listar_estaciones(estaciones);
+	//int err = mensual_precipitacion(estaciones, numero_estacion);
 	//int err = listar_estaciones(estaciones);
 
 	exit(0);
 	
 
 }
+

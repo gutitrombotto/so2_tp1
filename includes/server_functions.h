@@ -20,4 +20,12 @@ int listar_estaciones(struct Estacion *estaciones[MAX_ESTACIONES]);
 
 int precipitacion_diario(struct Estacion *estaciones[MAX_ESTACIONES], int numero_estacion);
 
+int valor_variable (struct Variables *variables, struct Estacion * estacion);
+
+int promedio_variables(struct Estacion *estaciones[MAX_ESTACIONES]);
+
+int mensual_precipitacion(struct Estacion *estaciones[MAX_ESTACIONES], int numero_estacion);
+
+int descargar(struct Estacion *estaciones[MAX_ESTACIONES], int numero_estacion);
+
 #endif

@@ -6,10 +6,12 @@
 
 #include <time.h>
 
+
+#define NUM_ESTACIONES 5
 /*! \def MAX_ESTACIONES
     \brief Cantidad de estaciones en el documento
 */
-#define MAX_ESTACIONES 8
+#define MAX_ESTACIONES 18303
 /*! \def NUM_CAMPOS
     \brief Cantidad de Variables de las estaciones
 */
@@ -47,4 +49,21 @@ struct Estacion {
 	float  humedad_hoja;
 };
 
+struct Variables {
+	float  temperatura;
+	float  humedad;
+	float  punto_rocio;
+	float  precipitacion;
+	float  velocidad_viento;
+	float  rafaga_max;
+	float  presion;
+	float  radiacion_solar;
+	float  temperatura_suelo1;
+	float  temperatura_suelo2; // No tiene datos
+	float temperatura_suelo3; // No tiene datos
+	float  humedad_suelo1; // No tienen datos de aca hasta abajos
+	float  humedad_suelo2;
+	float  humedad_suelo3;
+	float  humedad_hoja;
+};
 #endif 
