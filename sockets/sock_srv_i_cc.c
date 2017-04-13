@@ -81,7 +81,7 @@ int test_commando(char * buffer)
 		{
 			return 6;
 		} else {
-			return 7;
+			return -1;
 		}
 		token = strtok(NULL, s);
 	}
@@ -90,11 +90,13 @@ int test_commando(char * buffer)
 int main( int argc, char *argv[] ) {
 	int sockfd, newsockfd, puerto, clilen, pid;
 	char buffer[TAM];
+	char srv_buf [TAM];
 	struct sockaddr_in serv_addr, cli_addr;
-	int n;
+	int n, command_id;
+	char *command_list;
 
 	if ( argc < 2 ) {
-        	fprintf( stderr, "Uso: %s <puerto>\n", argv[0] );
+		fprintf( stderr, "Uso: %s <puerto>\n", argv[0] );
 		exit( 1 );
 	}
 
@@ -115,12 +117,15 @@ int main( int argc, char *argv[] ) {
 		exit( 1 );
 	}
 
-        printf( "Proceso: %d - socket disponible: %d\n", getpid(), ntohs(serv_addr.sin_port) );
+	printf( "Proceso: %d - socket disponible: %d\n", getpid(), ntohs(serv_addr.sin_port) );
 
 	listen( sockfd, 5 );
 	clilen = sizeof( cli_addr );
 
+
 	while( 1 ) {
+
+
 		newsockfd = accept( sockfd, (struct sockaddr *) &cli_addr, &clilen );
 
 		if ( newsockfd < 0 ) {
@@ -134,12 +139,12 @@ int main( int argc, char *argv[] ) {
 			exit( 1 );
 		}
 
-		if ( pid == 0 ) {  // Proceso hijo
+		if ( pid == 0 ) 
+		{  // Proceso hijo
 			close( sockfd );
 
-			while ( 1 ) {
-
-				
+			while ( 1 ) 
+			{				
 				memset( buffer, 0, TAM );
 
 				n = read( newsockfd, buffer, TAM-1 );
@@ -151,11 +156,25 @@ int main( int argc, char *argv[] ) {
 				printf( "PROCESO %d. ", getpid() );
 				printf( "Recibí: %s", buffer );
 
-				n = write( newsockfd, "Obtuve su mensaje", 18 );
-				if ( n < 0 ) {
-					perror( "escritura en socket" );
-					exit( 1 );
+				buffer[strlen(buffer)-1] = '\0';
+				printf("%s\n", buffer);
+				if(!strcmp(buffer,"contra")){
+					char * contra_ok = "Contraseña correcta. Estas autenticado";
+					n = write( newsockfd, contra_ok, strlen(contra_ok) );
+					if ( n < 0 ) {
+						perror( "escritura en socket" );
+						exit( 1 );
+					}
+					break;
+				} else {
+					char * contra_mal = "contraseña incorrecta";
+					n = write( newsockfd, contra_mal, strlen(contra_mal) );
+					if ( n < 0 ) {
+						perror( "escritura en socket" );
+						exit( 1 );
+					}
 				}
+
 				// Verificación de si hay que terminar
 				buffer[strlen(buffer)-1] = '\0';
 				if( !strcmp( "fin", buffer ) ) {
@@ -163,9 +182,60 @@ int main( int argc, char *argv[] ) {
 					exit(0);
 				}
 			}
+
+
+			while(1)
+			{
+				printf("*** Enviando ***\n");
+				command_list = lista_comandos();
+
+				char delim = '\x2';
+				n = write(newsockfd, &delim, 1);
+				if (n < 0) perror("ERROR writing to socket");
+				n = write(newsockfd, command_list, strlen(command_list));
+//				n = write(newsockfd, data, datalen);
+				if (n < 0) perror("ERROR writing to socket");
+				delim = '\x3';
+				n = write(newsockfd, &delim, 1);
+				if (n < 0) perror("ERROR writing to socket");
+
+
+
+				/*
+				int datalen = sizeof(command_list); // # of bytes in data
+				int tmp = htonl(datalen);
+				n = write(newsockfd, (char*)&tmp, sizeof(tmp));
+				if (n < 0) perror("ERROR writing to socket");
+				n = write(newsockfd, command_list, strlen(command_list));
+				if (n < 0) perror("ERROR writing to socket");
+
+				*/
+
+				memset( buffer, 0, TAM );
+				n = read( newsockfd, buffer, TAM-1 );
+				if ( n < 0 ) perror( "lectura de socket" );
+				command_id = test_commando(buffer);
+				if (command_id == -1)
+				{
+					printf("ERROR: Comando no disponible\n");
+
+				} else {
+					printf("Comando correcto\n");
+
+				}			
+			}
 		}
 		else {
 			printf( "SERVIDOR: Nuevo cliente, que atiende el proceso hijo: %d\n", pid );
+			memset( srv_buf, '\0', TAM );
+			fgets( srv_buf, TAM-1, stdin );
+			if (!strcmp(srv_buf, "fin"))
+			{
+				printf("Cerrando socket...\n");
+				close( sockfd);
+				exit(0);
+
+			}
 			close( newsockfd );
 		}
 	}

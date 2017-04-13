@@ -59,6 +59,42 @@ char ** split_line(char * line){
 	return tokens;
 }
 
+void listado_comandos(int sockfd)
+{
+	int n;
+	char tmp;
+	char * buffer;
+	int buflen;
+
+	while(1){
+		buflen=0;
+		n = read(sockfd, &tmp, 1);
+		if (n < 0) perror("ERROR reading from socket");
+
+		if (tmp != '\x2')
+			continue;
+		buflen = 0;
+
+		do
+		{
+			n = read(sockfd, &tmp, 1);
+			if (n < 0) perror("ERROR reading from socket");
+
+			if (tmp == '\x3')
+				break;
+
+        // TODO: if the buffer's capacity has been reached, either reallocate the buffer with a larger size, or fail the operation...
+			buffer[buflen] = tmp;
+			++buflen;
+		}
+		while (1);
+		
+	}
+
+	printf("%*.*s\n", buflen, buflen, buffer);
+
+	return ;
+}
 int main( int argc, char *argv[] ) {
 	int sockfd, puerto, n;
 	struct sockaddr_in serv_addr;
@@ -66,6 +102,10 @@ int main( int argc, char *argv[] ) {
 	int terminar = 0;
 	Client_info *cliente = malloc(sizeof(Client_info));
 	char buffer[TAM];
+	char *server_msjs;
+	int conect_auth = 0;
+	char tmp;
+	char * comandos;
 	char * init_comand = "connect usuario@numero_ip:port";
 /*	if ( argc < 3 ) {
 		fprintf( stderr, "Uso %s host puerto\n", argv[0]);
@@ -106,10 +146,10 @@ int main( int argc, char *argv[] ) {
 				printf("ERROR: IP %s no valido\n", line_parsed[2]);
 				printf("Escribe nuevamente el comando: %s\n", init_comand);
 			}
-			if (!strcmp(line_parsed[3], "6020"))
+			if (!strcmp(line_parsed[3], "6025"))
 			{
 				cliente->puerto = line_parsed[3];
-				int conect_auth = 1;
+				conect_auth = 1;
 				//printf("%s\n", cliente->ip_conexion);
 			} else 
 			{
@@ -187,46 +227,33 @@ while(1)
 	}
 	
 }
+
 printf("Ya estas Autenticado\n");
-exit(0);
+printf("Escriba el comando que desea realizar\n");
+
+while(1) 
+{
+
+	listado_comandos(sockfd);
+
 }
 
+printf("ESTOY ACA W8\n");
+while (1);
 
+exit(0);
+}
 /*
+	int buflen;
+	n = read(sockfd, (char*)&buflen, sizeof(buflen));
+	if (n < 0) perror("ERROR reading from socket");
+	buflen = ntohl(buflen);
+	printf("%d\n", buflen);
 
-
-			printf("escribiste connect\n");
-
-			if (!strcmp(line_parsed[1], "agustin"))
-			{
-				printf("Escribiste agustin de usuario\n");
-			} else {
-				printf("Nombre de usuario incorrecto\n");
-			}
-			if (!strcmp(line_parsed[2], "localhost"))
-			{
-
-			server = gethostbyname(line_parsed[2]); //gethostbyname( argv[1] );
-			if (server == NULL) {
-				fprintf( stderr,"Error, no existe el host\n" );
-				exit( 0 );
-			}
-			printf("Escribiste localhost de numero_ip\n");
-		} 
-		else {
-			printf("ip del servidor incorrecto\n");
-		}
-
-		if (!strcmp(line_parsed[3], "6020"))
-		{
-			puerto = atoi( line_parsed[3] );
-			sockfd = socket( AF_INET, SOCK_STREAM, 0 );
-			if ( sockfd < 0 ) {
-				perror( "ERROR apertura de socket" );
-				exit( 1 );
-			}
-		} else {
-			printf("puerto %d no esta abierto\n", atoi(line_parsed[3]));
-		}
-
+	n = read(sockfd, server_msjs, buflen);
+	if (n < 0) perror("ERROR reading from socket");
+	else printf("%*.*s\n", n, n, server_msjs);
 */
+
+
+
