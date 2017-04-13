@@ -1,5 +1,5 @@
-#include <stdio.h>
 #include <stdlib.h>
+#include <stdio.h>
 #include <string.h>
 #include <sys/types.h> 
 #include <sys/socket.h>
@@ -53,6 +53,7 @@ char * lista_comandos()
 }
 int test_commando(char * buffer)
 {
+	char * str;
 	const char s[2] = " ";
 	char *token;
 
@@ -90,13 +91,7 @@ int main( int argc, char *argv[] ) {
 	int sockfd, newsockfd, puerto, clilen, pid;
 	char buffer[TAM];
 	struct sockaddr_in serv_addr, cli_addr;
-	struct sockaddr_storage peer_addr;
-           socklen_t peer_addr_len;
 	int n;
-	void * buf;
-	int count;
-	char * msj_bienvenida;
-	msj_bienvenida = "Bienvenido, escriba su usuario y contraseña";
 
 	if ( argc < 2 ) {
         	fprintf( stderr, "Uso: %s <puerto>\n", argv[0] );
@@ -127,6 +122,7 @@ int main( int argc, char *argv[] ) {
 
 	while( 1 ) {
 		newsockfd = accept( sockfd, (struct sockaddr *) &cli_addr, &clilen );
+
 		if ( newsockfd < 0 ) {
 			perror( "accept" );
 			exit( 1 );
@@ -141,13 +137,11 @@ int main( int argc, char *argv[] ) {
 		if ( pid == 0 ) {  // Proceso hijo
 			close( sockfd );
 
-			/*n = write(newsockfd, msj_bienvenida, strlen(msj_bienvenida)+1);
-				if ( n < 0 ) {
-					perror( "escritura en socket" );
-					exit( 1 );
-				}*/	
 			while ( 1 ) {
+
+				
 				memset( buffer, 0, TAM );
+
 				n = read( newsockfd, buffer, TAM-1 );
 				if ( n < 0 ) {
 					perror( "lectura de socket" );
@@ -156,26 +150,12 @@ int main( int argc, char *argv[] ) {
 
 				printf( "PROCESO %d. ", getpid() );
 				printf( "Recibí: %s", buffer );
-				buffer[strlen(buffer)-1] = '\0';
 
-					if (!strcmp(buffer, "agustin,contra"))
-					{
-						printf("CORERCTAS!!\n");
-						char * user_pass = "Usuario y contra correctas\n";
-						n = write( newsockfd, user_pass, strlen(user_pass) );
-						if ( n < 0 ) {
-							perror( "escritura en socket" );
-							exit( 1 );
-						}
-						break;
-					} else {
-
-						char * user_pass_incorrecta = "Usuario y contraseña incorrecta";
-						//char * str_prompt = prompt();
-						n = write( newsockfd, user_pass_incorrecta, strlen(user_pass_incorrecta));
-						verificar_erro(n);
-					}
-				
+				n = write( newsockfd, "Obtuve su mensaje", 18 );
+				if ( n < 0 ) {
+					perror( "escritura en socket" );
+					exit( 1 );
+				}
 				// Verificación de si hay que terminar
 				buffer[strlen(buffer)-1] = '\0';
 				if( !strcmp( "fin", buffer ) ) {
@@ -183,32 +163,10 @@ int main( int argc, char *argv[] ) {
 					exit(0);
 				}
 			}
-				while(1){
-					
-					char * command_list = lista_comandos();
-					 n= write( newsockfd, command_list, strlen(command_list));
-						verificar_erro(n);
-
-					n = read( newsockfd, buffer, TAM-1 );
-					if ( n < 0 ) {
-						perror( "lectura de socket" );
-						exit(1);
-					}
-					printf("%s\n", buffer);
-
-					buffer[strlen(buffer)-1] = '\0';
-					int commando = test_commando(buffer);
-					n= write( newsockfd, commando, strlen(commando));
-						verificar_erro(n);
-
-				}
-			// tiene usuario y contra ok
-
 		}
 		else {
 			printf( "SERVIDOR: Nuevo cliente, que atiende el proceso hijo: %d\n", pid );
 			close( newsockfd );
-			close(sockfd);
 		}
 	}
 	return 0; 
