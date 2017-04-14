@@ -9,6 +9,7 @@
 #include <string.h>
 #include <errno.h>
 
+#define BUFSIZE 256
 
 #define MAX_BUFFER 2048
 /*! \def MAX_ESTACIONES
@@ -39,6 +40,13 @@ struct tm char_to_fecha (const char *input);
 */   
 void set_datos_estaciones(char * token,int contador, struct Estacion * est);
 
+/*!	\fn struct Estacion *parse_data(char * line_buffer, const char *s)
+	\brief Parsea cada linea del documento y guarda los valores en una estructura Estacion
+	\param line_buffer linea del documento
+	\param s delimitador por el cual parsear
+	\return Estacion puntero a estacion con los datos del archivo
+*/   
 struct Estacion *parse_data(char * line_buffer, const char *s);
 
+void load_file(char *inname, struct Estacion *estaciones[MAX_ESTACIONES]);
 #endif

@@ -29,4 +29,6 @@ int mensual_precipitacion(struct Estacion *estaciones[MAX_ESTACIONES], int numer
 int descargar(struct Estacion *estaciones[MAX_ESTACIONES], int numero_estacion, char * path);
 
 void validar_datos(struct Estacion *estacion);
+
+int test_commando(char * buffer);
 #endif

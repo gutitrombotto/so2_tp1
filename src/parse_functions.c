@@ -102,7 +102,7 @@ struct Estacion *parse_data(char * line_buffer, const char *s){
 	struct Estacion *est= malloc(sizeof(struct Estacion));
 	
 
-	memset(est, 0, sizeof(struct Estacion));
+	//memset(est, 0, sizeof(struct Estacion));
 	//memset(est->fecha, '\0', sizeof(token
 	while( token != NULL ) 
 	{
@@ -114,4 +114,38 @@ struct Estacion *parse_data(char * line_buffer, const char *s){
 	}
 
 	return est;
+}
+void load_file(char *inname, struct Estacion *estaciones[MAX_ESTACIONES])
+{
+	char line_buffer[BUFSIZ]; /* BUFSIZ is defined if you include stdio->h */
+	int line_number;
+	FILE *infile;
+	int arr_cont;
+	arr_cont = 0;
+	const char s[2] = ",";
+
+	infile = fopen(inname, "r"); 
+	if (!infile) { 
+		printf("Couldn't open file %s for reading\n", inname); 
+		perror("Error while opening the file");
+		exit(EXIT_FAILURE);
+		
+	}
+	printf("Opened file %s for reading\n", inname); 
+	line_number = 0; 
+	while (fgets(line_buffer, sizeof(line_buffer), infile)!=NULL) 
+	{
+		
+		if(line_number > 2){
+			//	printf("%s\n", line_buffer);
+			estaciones[arr_cont] = parse_data(line_buffer,s);
+			arr_cont ++;
+		}
+
+
+	    ++line_number; /* note that the newline is in the buffer */
+
+	}
+	return;
+	
 }

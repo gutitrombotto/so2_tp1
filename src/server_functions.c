@@ -616,8 +616,9 @@ void validar_datos(struct Estacion *estacion)
 	
 	return;
 }
-int descargar(struct Estacion *estaciones[MAX_ESTACIONES], int numero_estacion, char * path)
+int descargar(struct Estacion *estaciones[MAX_ESTACIONES], int numero_estacion)
 {
+	char * path = "datos.txt";
 	FILE *infile; 
 	int est_index[4031];
 	infile = fopen(path, "w+");
@@ -669,4 +670,74 @@ int descargar(struct Estacion *estaciones[MAX_ESTACIONES], int numero_estacion, 
 		}
 	}
 	return 0;
+}
+
+int test_commando(char * buffer)
+{
+	int ret;
+	if(!strcmp(buffer, "listar"))
+	{
+		ret = 1;
+	} else if(!strcmp(buffer, "descargar"))
+	{
+		ret = 2;
+
+	} else if(!strcmp(buffer, "diario_precipitacion"))
+	{
+		ret = 3;
+
+	} else if(!strcmp(buffer, "mensual_precipitacion"))
+	{
+		ret = 4;
+
+	} else if(!strcmp(buffer, "promedio"))
+	{
+		ret = 5;
+
+	} else if(!strcmp(buffer, "desconectar"))
+	{
+		ret = 6;
+
+	} else {
+		ret = -1;
+
+	}
+
+	return ret;
+
+}
+
+void execute_task(int c, char ** line_parsed, struct Estacion *estaciones[MAX_ESTACIONES])
+{
+	if (c == 1)
+	{
+	listar_estaciones(estaciones) 
+	/*EJECUTAR Listar*/
+		
+	} else if (c == 2)
+	{
+	descargar(estaciones, line_parsed[1])
+	/*EJECUTAR descargar*/
+
+	}else if (c == 3) 
+	{
+	/*EJECUTAR diario_precipitacion*/
+		precipitacion_diario(estaciones, line_parsed[1])
+
+	}else if (c == 2)
+	{ 
+	/*EJECUTAR mensual_precipitacion*/
+		mensual_precipitacion(estaciones, line_parsed[1])
+	}
+	else if (c == 2)
+	{
+	/*EJECUTAR promedio*/
+		promedio_variables(estaciones)
+
+	}
+	else if (c == 2)
+	{
+	/*EJECUTAR desconectar*/
+
+	}
 }
