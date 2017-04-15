@@ -1,0 +1,137 @@
+.TH "includes/parse_functions.h" 3 "Sat Apr 15 2017" "Version V1.0" "Gestion de AWS con Sockets - TP1 SOII" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+includes/parse_functions.h \- Funciones para el parseo de datos\&.  
+
+.SH SYNOPSIS
+.br
+.PP
+\fC#include <stdlib\&.h>\fP
+.br
+\fC#include <stdio\&.h>\fP
+.br
+\fC#include <string\&.h>\fP
+.br
+\fC#include <errno\&.h>\fP
+.br
+
+.SS "Macros"
+
+.in +1c
+.ti -1c
+.RI "#define \fBBUFSIZE\fP   256"
+.br
+.RI "\fITamaño de la linea de lectura de un archivo\&. \fP"
+.ti -1c
+.RI "#define \fBMAX_BUFFER\fP   2048"
+.br
+.RI "\fICantidad de estaciones en el documento\&. \fP"
+.in -1c
+.SS "Functions"
+
+.in +1c
+.ti -1c
+.RI "char * \fBtest_dato\fP (char *token)"
+.br
+.RI "\fIValida si existe dado util\&. \fP"
+.ti -1c
+.RI "struct tm \fBchar_to_fecha\fP (const char *input)"
+.br
+.RI "\fIConvierte char del documento a formato fecha\&. \fP"
+.ti -1c
+.RI "void \fBset_datos_estaciones\fP (char *token, int contador, struct \fBEstacion\fP *est)"
+.br
+.RI "\fISetea la variable de la estacion según el numero de campo en que se encuentra\&. \fP"
+.ti -1c
+.RI "struct \fBEstacion\fP * \fBparse_data\fP (char *line_buffer, const char *s)"
+.br
+.RI "\fIParsea cada linea del documento y guarda los valores en una estructura \fBEstacion\fP\&. \fP"
+.ti -1c
+.RI "void \fBload_file\fP (char *inname, struct \fBEstacion\fP *estaciones[\fBMAX_ESTACIONES\fP])"
+.br
+.RI "\fICargar en un arreglo los datos del documento\&. \fP"
+.in -1c
+.SH "Detailed Description"
+.PP 
+Funciones para el parseo de datos\&. 
+
+
+.SH "Function Documentation"
+.PP 
+.SS "struct tm char_to_fecha (const char * input)"
+
+.PP
+Convierte char del documento a formato fecha\&. 
+.PP
+\fBParameters:\fP
+.RS 4
+\fIinput\fP dato a convertir 
+.RE
+.PP
+\fBReturns:\fP
+.RS 4
+tm estructura Fecha 
+.RE
+.PP
+
+.SS "void load_file (char * inname, struct \fBEstacion\fP * estaciones[MAX_ESTACIONES])"
+
+.PP
+Cargar en un arreglo los datos del documento\&. 
+.PP
+\fBParameters:\fP
+.RS 4
+\fIinname\fP nombre del docuemnto 
+.br
+\fIestaciones\fP arreglo de punteros a estaciones 
+.RE
+.PP
+
+.SS "struct \fBEstacion\fP * parse_data (char * line_buffer, const char * s)"
+
+.PP
+Parsea cada linea del documento y guarda los valores en una estructura \fBEstacion\fP\&. 
+.PP
+\fBParameters:\fP
+.RS 4
+\fIline_buffer\fP linea del documento 
+.br
+\fIs\fP delimitador por el cual parsear 
+.RE
+.PP
+\fBReturns:\fP
+.RS 4
+\fBEstacion\fP puntero a estacion con los datos del archivo 
+.RE
+.PP
+
+.SS "void set_datos_estaciones (char * token, int contador, struct \fBEstacion\fP * est)"
+
+.PP
+Setea la variable de la estacion según el numero de campo en que se encuentra\&. 
+.PP
+\fBParameters:\fP
+.RS 4
+\fItoken\fP dato a validar y setear 
+.br
+\fIcontador\fP numero de campo 
+.br
+\fIest\fP Estructura de estacion a la cual insertar dato 
+.RE
+.PP
+
+.SS "char * test_dato (char * token)"
+
+.PP
+Valida si existe dado util\&. 
+.PP
+\fBParameters:\fP
+.RS 4
+\fItoken\fP dato a validar 
+.RE
+.PP
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for Gestion de AWS con Sockets - TP1 SOII from the source code\&.

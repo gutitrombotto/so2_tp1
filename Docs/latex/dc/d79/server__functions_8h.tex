@@ -1,0 +1,249 @@
+\hypertarget{server__functions_8h}{}\section{includes/server\+\_\+functions.h File Reference}
+\label{server__functions_8h}\index{includes/server\+\_\+functions.\+h@{includes/server\+\_\+functions.\+h}}
+
+
+Funciones del servidor.  
+
+
+{\ttfamily \#include \char`\"{}../includes/estaciones.\+h\char`\"{}}\\*
+{\ttfamily \#include $<$time.\+h$>$}\\*
+{\ttfamily \#include $<$stdlib.\+h$>$}\\*
+{\ttfamily \#include $<$stdio.\+h$>$}\\*
+{\ttfamily \#include $<$string.\+h$>$}\\*
+Include dependency graph for server\+\_\+functions.\+h\+:
+% FIG 0
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+int \hyperlink{server__functions_8h_adb8c7c854b855d5c018ef7fedad24293}{test\+\_\+datos} (struct \hyperlink{struct_estacion}{Estacion} $\ast$estacion)
+\begin{DoxyCompactList}\small\item\em Verifica si hay datos en cada variable de la estacion. \end{DoxyCompactList}\item 
+int \hyperlink{server__functions_8h_a7817329c6a26732a17209dd3892ef269}{listar\+\_\+estaciones} (struct \hyperlink{struct_estacion}{Estacion} $\ast$estaciones\mbox{[}\hyperlink{estaciones_8h_adc191ed392ba6fcf613758c38745aff2}{M\+A\+X\+\_\+\+E\+S\+T\+A\+C\+I\+O\+N\+ES}\mbox{]})
+\begin{DoxyCompactList}\small\item\em Muestra en pantalla las estaciones y si poseen datos en sus variables. \end{DoxyCompactList}\item 
+int \hyperlink{server__functions_8h_add829986055c90efae1f1892a6f2645e}{precipitacion\+\_\+diario} (struct \hyperlink{struct_estacion}{Estacion} $\ast$estaciones\mbox{[}\hyperlink{estaciones_8h_adc191ed392ba6fcf613758c38745aff2}{M\+A\+X\+\_\+\+E\+S\+T\+A\+C\+I\+O\+N\+ES}\mbox{]}, int numero\+\_\+estacion)
+\begin{DoxyCompactList}\small\item\em Muestra el acumulado por dia de la estacion pasada como parametro. \end{DoxyCompactList}\item 
+int \hyperlink{server__functions_8h_aabe5cbfae58b2ac664f7e3c64081bf3b}{mensual\+\_\+precipitacion} (struct \hyperlink{struct_estacion}{Estacion} $\ast$estaciones\mbox{[}\hyperlink{estaciones_8h_adc191ed392ba6fcf613758c38745aff2}{M\+A\+X\+\_\+\+E\+S\+T\+A\+C\+I\+O\+N\+ES}\mbox{]}, int numero\+\_\+estacion)
+\begin{DoxyCompactList}\small\item\em Muestra el acumulado por mes de la estacion pasada como parametro. \end{DoxyCompactList}\item 
+int \hyperlink{server__functions_8h_affe9c49a3a78d364002ac21a9cd15505}{valor\+\_\+variable} (struct \hyperlink{struct_variables}{Variables} $\ast$variables, struct \hyperlink{struct_estacion}{Estacion} $\ast$estacion)
+\begin{DoxyCompactList}\small\item\em Acumula el valor des las variables de la estacion. \end{DoxyCompactList}\item 
+void \hyperlink{server__functions_8h_a812891e18524b4d904f643c8188618f4}{mostrar\+\_\+variables} (struct \hyperlink{struct_variables}{Variables} $\ast$variables)
+\begin{DoxyCompactList}\small\item\em Muestra los valores de la estructura variables de una estacion. \end{DoxyCompactList}\item 
+void {\bfseries validar\+\_\+datos} (struct \hyperlink{struct_estacion}{Estacion} $\ast$estacion)\hypertarget{server__functions_8h_a79b422e0e0a5a6d92b80ebb63080541c}{}\label{server__functions_8h_a79b422e0e0a5a6d92b80ebb63080541c}
+
+\item 
+int \hyperlink{server__functions_8h_aaafea40cf099ed628546162c4131e408}{promedio\+\_\+variables} (struct \hyperlink{struct_estacion}{Estacion} $\ast$estaciones\mbox{[}\hyperlink{estaciones_8h_adc191ed392ba6fcf613758c38745aff2}{M\+A\+X\+\_\+\+E\+S\+T\+A\+C\+I\+O\+N\+ES}\mbox{]})
+\begin{DoxyCompactList}\small\item\em Acumula el valor des las variables de la estacion. \end{DoxyCompactList}\item 
+void \hyperlink{server__functions_8h_ab6902d2d3e04026c25b72b61c39c1f57}{set\+\_\+promedio} (struct \hyperlink{struct_variables}{Variables} $\ast$variables, int contador\+\_\+estaciones)
+\begin{DoxyCompactList}\small\item\em Establece el promedio de cada variables segun el contador de estaciones. \end{DoxyCompactList}\item 
+int \hyperlink{server__functions_8h_adb920bdbf9e33ff4b21f660cbc98b087}{descargar} (struct \hyperlink{struct_estacion}{Estacion} $\ast$estaciones\mbox{[}\hyperlink{estaciones_8h_adc191ed392ba6fcf613758c38745aff2}{M\+A\+X\+\_\+\+E\+S\+T\+A\+C\+I\+O\+N\+ES}\mbox{]}, int numero\+\_\+estacion)
+\begin{DoxyCompactList}\small\item\em Crea un archivo con la estacio y sus valores. \end{DoxyCompactList}\item 
+int \hyperlink{server__functions_8h_af14cf1de087183ea4a903d7889e7a490}{test\+\_\+commando} (char $\ast$buffer)
+\begin{DoxyCompactList}\small\item\em Verifica el valor pasado como parametro y devuelve un entero segun la accion a realizar. \end{DoxyCompactList}\item 
+int \hyperlink{server__functions_8h_a3ecf32c5d5a0cd6946c0206738b6127c}{execute\+\_\+task} (int c, char $\ast$$\ast$line\+\_\+parsed, struct \hyperlink{struct_estacion}{Estacion} $\ast$estaciones\mbox{[}\hyperlink{estaciones_8h_adc191ed392ba6fcf613758c38745aff2}{M\+A\+X\+\_\+\+E\+S\+T\+A\+C\+I\+O\+N\+ES}\mbox{]})
+\begin{DoxyCompactList}\small\item\em Ejecuta una funcion del servidor según el numero de tarea. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Funciones del servidor. 
+
+
+
+\subsection{Function Documentation}
+\index{server\+\_\+functions.\+h@{server\+\_\+functions.\+h}!descargar@{descargar}}
+\index{descargar@{descargar}!server\+\_\+functions.\+h@{server\+\_\+functions.\+h}}
+\subsubsection[{\texorpdfstring{descargar(struct Estacion $\ast$estaciones[M\+A\+X\+\_\+\+E\+S\+T\+A\+C\+I\+O\+N\+ES], int numero\+\_\+estacion)}{descargar(struct Estacion *estaciones[MAX_ESTACIONES], int numero_estacion)}}]{\setlength{\rightskip}{0pt plus 5cm}int descargar (
+\begin{DoxyParamCaption}
+\item[{struct {\bf Estacion} $\ast$}]{estaciones\mbox{[}\+M\+A\+X\+\_\+\+E\+S\+T\+A\+C\+I\+O\+N\+E\+S\mbox{]}, }
+\item[{int}]{numero\+\_\+estacion}
+\end{DoxyParamCaption}
+)}\hypertarget{server__functions_8h_adb920bdbf9e33ff4b21f660cbc98b087}{}\label{server__functions_8h_adb920bdbf9e33ff4b21f660cbc98b087}
+
+
+Crea un archivo con la estacio y sus valores. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em $\ast$estaciones} & estructura con las variables de una estacion \\
+\hline
+{\em numero\+\_\+estacion} & indice de la estacion de la cual sus datos se guardaran en archivo \\
+\hline
+\end{DoxyParams}
+\index{server\+\_\+functions.\+h@{server\+\_\+functions.\+h}!execute\+\_\+task@{execute\+\_\+task}}
+\index{execute\+\_\+task@{execute\+\_\+task}!server\+\_\+functions.\+h@{server\+\_\+functions.\+h}}
+\subsubsection[{\texorpdfstring{execute\+\_\+task(int c, char $\ast$$\ast$line\+\_\+parsed, struct Estacion $\ast$estaciones[M\+A\+X\+\_\+\+E\+S\+T\+A\+C\+I\+O\+N\+ES])}{execute_task(int c, char **line_parsed, struct Estacion *estaciones[MAX_ESTACIONES])}}]{\setlength{\rightskip}{0pt plus 5cm}execute\+\_\+task (
+\begin{DoxyParamCaption}
+\item[{int}]{c, }
+\item[{char $\ast$$\ast$}]{line\+\_\+parsed, }
+\item[{struct {\bf Estacion} $\ast$}]{estaciones\mbox{[}\+M\+A\+X\+\_\+\+E\+S\+T\+A\+C\+I\+O\+N\+E\+S\mbox{]}}
+\end{DoxyParamCaption}
+)}\hypertarget{server__functions_8h_a3ecf32c5d5a0cd6946c0206738b6127c}{}\label{server__functions_8h_a3ecf32c5d5a0cd6946c0206738b6127c}
+
+
+Ejecuta una funcion del servidor según el numero de tarea. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em c} & numero de tarea a realizar \\
+\hline
+{\em $\ast$$\ast$line\+\_\+parsed} & parametros para las tareas a realizar \\
+\hline
+{\em $\ast$estaciones} & datos de las estaciones \\
+\hline
+\end{DoxyParams}
+\index{server\+\_\+functions.\+h@{server\+\_\+functions.\+h}!listar\+\_\+estaciones@{listar\+\_\+estaciones}}
+\index{listar\+\_\+estaciones@{listar\+\_\+estaciones}!server\+\_\+functions.\+h@{server\+\_\+functions.\+h}}
+\subsubsection[{\texorpdfstring{listar\+\_\+estaciones(struct Estacion $\ast$estaciones[M\+A\+X\+\_\+\+E\+S\+T\+A\+C\+I\+O\+N\+ES])}{listar_estaciones(struct Estacion *estaciones[MAX_ESTACIONES])}}]{\setlength{\rightskip}{0pt plus 5cm}int listar\+\_\+estaciones (
+\begin{DoxyParamCaption}
+\item[{struct {\bf Estacion} $\ast$}]{estaciones\mbox{[}\+M\+A\+X\+\_\+\+E\+S\+T\+A\+C\+I\+O\+N\+E\+S\mbox{]}}
+\end{DoxyParamCaption}
+)}\hypertarget{server__functions_8h_a7817329c6a26732a17209dd3892ef269}{}\label{server__functions_8h_a7817329c6a26732a17209dd3892ef269}
+
+
+Muestra en pantalla las estaciones y si poseen datos en sus variables. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em $\ast$estaciones} & arreglo que contiene los datos de las estaciones \\
+\hline
+\end{DoxyParams}
+\index{server\+\_\+functions.\+h@{server\+\_\+functions.\+h}!mensual\+\_\+precipitacion@{mensual\+\_\+precipitacion}}
+\index{mensual\+\_\+precipitacion@{mensual\+\_\+precipitacion}!server\+\_\+functions.\+h@{server\+\_\+functions.\+h}}
+\subsubsection[{\texorpdfstring{mensual\+\_\+precipitacion(struct Estacion $\ast$estaciones[M\+A\+X\+\_\+\+E\+S\+T\+A\+C\+I\+O\+N\+ES], int numero\+\_\+estacion)}{mensual_precipitacion(struct Estacion *estaciones[MAX_ESTACIONES], int numero_estacion)}}]{\setlength{\rightskip}{0pt plus 5cm}int mensual\+\_\+precipitacion (
+\begin{DoxyParamCaption}
+\item[{struct {\bf Estacion} $\ast$}]{estaciones\mbox{[}\+M\+A\+X\+\_\+\+E\+S\+T\+A\+C\+I\+O\+N\+E\+S\mbox{]}, }
+\item[{int}]{numero\+\_\+estacion}
+\end{DoxyParamCaption}
+)}\hypertarget{server__functions_8h_aabe5cbfae58b2ac664f7e3c64081bf3b}{}\label{server__functions_8h_aabe5cbfae58b2ac664f7e3c64081bf3b}
+
+
+Muestra el acumulado por mes de la estacion pasada como parametro. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em $\ast$estaciones} & arreglo que contiene los datos de las estaciones \\
+\hline
+{\em numero\+\_\+estacion} & \\
+\hline
+\end{DoxyParams}
+\index{server\+\_\+functions.\+h@{server\+\_\+functions.\+h}!mostrar\+\_\+variables@{mostrar\+\_\+variables}}
+\index{mostrar\+\_\+variables@{mostrar\+\_\+variables}!server\+\_\+functions.\+h@{server\+\_\+functions.\+h}}
+\subsubsection[{\texorpdfstring{mostrar\+\_\+variables(struct Variables $\ast$variables)}{mostrar_variables(struct Variables *variables)}}]{\setlength{\rightskip}{0pt plus 5cm}void mostrar\+\_\+variables (
+\begin{DoxyParamCaption}
+\item[{struct {\bf Variables} $\ast$}]{variables}
+\end{DoxyParamCaption}
+)}\hypertarget{server__functions_8h_a812891e18524b4d904f643c8188618f4}{}\label{server__functions_8h_a812891e18524b4d904f643c8188618f4}
+
+
+Muestra los valores de la estructura variables de una estacion. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em variables} & variables de una estacion \\
+\hline
+\end{DoxyParams}
+\index{server\+\_\+functions.\+h@{server\+\_\+functions.\+h}!precipitacion\+\_\+diario@{precipitacion\+\_\+diario}}
+\index{precipitacion\+\_\+diario@{precipitacion\+\_\+diario}!server\+\_\+functions.\+h@{server\+\_\+functions.\+h}}
+\subsubsection[{\texorpdfstring{precipitacion\+\_\+diario(struct Estacion $\ast$estaciones[M\+A\+X\+\_\+\+E\+S\+T\+A\+C\+I\+O\+N\+ES], int numero\+\_\+estacion)}{precipitacion_diario(struct Estacion *estaciones[MAX_ESTACIONES], int numero_estacion)}}]{\setlength{\rightskip}{0pt plus 5cm}int precipitacion\+\_\+diario (
+\begin{DoxyParamCaption}
+\item[{struct {\bf Estacion} $\ast$}]{estaciones\mbox{[}\+M\+A\+X\+\_\+\+E\+S\+T\+A\+C\+I\+O\+N\+E\+S\mbox{]}, }
+\item[{int}]{numero\+\_\+estacion}
+\end{DoxyParamCaption}
+)}\hypertarget{server__functions_8h_add829986055c90efae1f1892a6f2645e}{}\label{server__functions_8h_add829986055c90efae1f1892a6f2645e}
+
+
+Muestra el acumulado por dia de la estacion pasada como parametro. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em $\ast$estaciones} & arreglo que contiene los datos de las estaciones \\
+\hline
+{\em numero\+\_\+estacion} & \\
+\hline
+\end{DoxyParams}
+\index{server\+\_\+functions.\+h@{server\+\_\+functions.\+h}!promedio\+\_\+variables@{promedio\+\_\+variables}}
+\index{promedio\+\_\+variables@{promedio\+\_\+variables}!server\+\_\+functions.\+h@{server\+\_\+functions.\+h}}
+\subsubsection[{\texorpdfstring{promedio\+\_\+variables(struct Estacion $\ast$estaciones[M\+A\+X\+\_\+\+E\+S\+T\+A\+C\+I\+O\+N\+ES])}{promedio_variables(struct Estacion *estaciones[MAX_ESTACIONES])}}]{\setlength{\rightskip}{0pt plus 5cm}int promedio\+\_\+variables (
+\begin{DoxyParamCaption}
+\item[{struct {\bf Estacion} $\ast$}]{estaciones\mbox{[}\+M\+A\+X\+\_\+\+E\+S\+T\+A\+C\+I\+O\+N\+E\+S\mbox{]}}
+\end{DoxyParamCaption}
+)}\hypertarget{server__functions_8h_aaafea40cf099ed628546162c4131e408}{}\label{server__functions_8h_aaafea40cf099ed628546162c4131e408}
+
+
+Acumula el valor des las variables de la estacion. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em $\ast$estacion} & datos de una estacion \\
+\hline
+{\em variables} & variables de la estacion pasada como paramtro. \\
+\hline
+\end{DoxyParams}
+\index{server\+\_\+functions.\+h@{server\+\_\+functions.\+h}!set\+\_\+promedio@{set\+\_\+promedio}}
+\index{set\+\_\+promedio@{set\+\_\+promedio}!server\+\_\+functions.\+h@{server\+\_\+functions.\+h}}
+\subsubsection[{\texorpdfstring{set\+\_\+promedio(struct Variables $\ast$variables, int contador\+\_\+estaciones)}{set_promedio(struct Variables *variables, int contador_estaciones)}}]{\setlength{\rightskip}{0pt plus 5cm}void set\+\_\+promedio (
+\begin{DoxyParamCaption}
+\item[{struct {\bf Variables} $\ast$}]{variables, }
+\item[{int}]{contador\+\_\+estaciones}
+\end{DoxyParamCaption}
+)}\hypertarget{server__functions_8h_ab6902d2d3e04026c25b72b61c39c1f57}{}\label{server__functions_8h_ab6902d2d3e04026c25b72b61c39c1f57}
+
+
+Establece el promedio de cada variables segun el contador de estaciones. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em $\ast$variables} & estructura con las variables de una estacion \\
+\hline
+{\em contador\+\_\+estaciones} & indice de la estacion a la cual pertenece las varia \\
+\hline
+\end{DoxyParams}
+\index{server\+\_\+functions.\+h@{server\+\_\+functions.\+h}!test\+\_\+commando@{test\+\_\+commando}}
+\index{test\+\_\+commando@{test\+\_\+commando}!server\+\_\+functions.\+h@{server\+\_\+functions.\+h}}
+\subsubsection[{\texorpdfstring{test\+\_\+commando(char $\ast$buffer)}{test_commando(char *buffer)}}]{\setlength{\rightskip}{0pt plus 5cm}int test\+\_\+commando (
+\begin{DoxyParamCaption}
+\item[{char $\ast$}]{buffer}
+\end{DoxyParamCaption}
+)}\hypertarget{server__functions_8h_af14cf1de087183ea4a903d7889e7a490}{}\label{server__functions_8h_af14cf1de087183ea4a903d7889e7a490}
+
+
+Verifica el valor pasado como parametro y devuelve un entero segun la accion a realizar. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em $\ast$buffer} & linea a validar \\
+\hline
+\end{DoxyParams}
+\index{server\+\_\+functions.\+h@{server\+\_\+functions.\+h}!test\+\_\+datos@{test\+\_\+datos}}
+\index{test\+\_\+datos@{test\+\_\+datos}!server\+\_\+functions.\+h@{server\+\_\+functions.\+h}}
+\subsubsection[{\texorpdfstring{test\+\_\+datos(struct Estacion $\ast$estacion)}{test_datos(struct Estacion *estacion)}}]{\setlength{\rightskip}{0pt plus 5cm}int test\+\_\+datos (
+\begin{DoxyParamCaption}
+\item[{struct {\bf Estacion} $\ast$}]{estacion}
+\end{DoxyParamCaption}
+)}\hypertarget{server__functions_8h_adb8c7c854b855d5c018ef7fedad24293}{}\label{server__functions_8h_adb8c7c854b855d5c018ef7fedad24293}
+
+
+Verifica si hay datos en cada variable de la estacion. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em $\ast$estacion} & estacion a la cual se validan los datos \\
+\hline
+\end{DoxyParams}
+\index{server\+\_\+functions.\+h@{server\+\_\+functions.\+h}!valor\+\_\+variable@{valor\+\_\+variable}}
+\index{valor\+\_\+variable@{valor\+\_\+variable}!server\+\_\+functions.\+h@{server\+\_\+functions.\+h}}
+\subsubsection[{\texorpdfstring{valor\+\_\+variable(struct Variables $\ast$variables, struct Estacion $\ast$estacion)}{valor_variable(struct Variables *variables, struct Estacion *estacion)}}]{\setlength{\rightskip}{0pt plus 5cm}int valor\+\_\+variable (
+\begin{DoxyParamCaption}
+\item[{struct {\bf Variables} $\ast$}]{variables, }
+\item[{struct {\bf Estacion} $\ast$}]{estacion}
+\end{DoxyParamCaption}
+)}\hypertarget{server__functions_8h_affe9c49a3a78d364002ac21a9cd15505}{}\label{server__functions_8h_affe9c49a3a78d364002ac21a9cd15505}
+
+
+Acumula el valor des las variables de la estacion. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em $\ast$estacion} & datos de una estacion \\
+\hline
+{\em variables} & variables de la estacion pasada como paramtro. \\
+\hline
+\end{DoxyParams}

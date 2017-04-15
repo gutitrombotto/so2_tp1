@@ -1,0 +1,141 @@
+\hypertarget{parse__functions_8h}{}\section{includes/parse\+\_\+functions.h File Reference}
+\label{parse__functions_8h}\index{includes/parse\+\_\+functions.\+h@{includes/parse\+\_\+functions.\+h}}
+
+
+Funciones para el parseo de datos.  
+
+
+{\ttfamily \#include $<$stdlib.\+h$>$}\\*
+{\ttfamily \#include $<$stdio.\+h$>$}\\*
+{\ttfamily \#include $<$string.\+h$>$}\\*
+{\ttfamily \#include $<$errno.\+h$>$}\\*
+Include dependency graph for parse\+\_\+functions.\+h\+:
+% FIG 0
+\subsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \hyperlink{parse__functions_8h_aeca034f67218340ecb2261a22c2f3dcd}{B\+U\+F\+S\+I\+ZE}~256\hypertarget{parse__functions_8h_aeca034f67218340ecb2261a22c2f3dcd}{}\label{parse__functions_8h_aeca034f67218340ecb2261a22c2f3dcd}
+
+\begin{DoxyCompactList}\small\item\em Tamaño de la linea de lectura de un archivo. \end{DoxyCompactList}\item 
+\#define \hyperlink{parse__functions_8h_a1d5dab30b404fab91608086105afc78c}{M\+A\+X\+\_\+\+B\+U\+F\+F\+ER}~2048\hypertarget{parse__functions_8h_a1d5dab30b404fab91608086105afc78c}{}\label{parse__functions_8h_a1d5dab30b404fab91608086105afc78c}
+
+\begin{DoxyCompactList}\small\item\em Cantidad de estaciones en el documento. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+char $\ast$ \hyperlink{parse__functions_8h_a70e062b64ab650efa8e3205ea07b82fa}{test\+\_\+dato} (char $\ast$token)
+\begin{DoxyCompactList}\small\item\em Valida si existe dado util. \end{DoxyCompactList}\item 
+struct tm \hyperlink{parse__functions_8h_a941f0fea8416ea7bcb37eafb3b70c264}{char\+\_\+to\+\_\+fecha} (const char $\ast$input)
+\begin{DoxyCompactList}\small\item\em Convierte char del documento a formato fecha. \end{DoxyCompactList}\item 
+void \hyperlink{parse__functions_8h_a8b28b5556f3cb1d40937eeb4973076c1}{set\+\_\+datos\+\_\+estaciones} (char $\ast$token, int contador, struct \hyperlink{struct_estacion}{Estacion} $\ast$est)
+\begin{DoxyCompactList}\small\item\em Setea la variable de la estacion según el numero de campo en que se encuentra. \end{DoxyCompactList}\item 
+struct \hyperlink{struct_estacion}{Estacion} $\ast$ \hyperlink{parse__functions_8h_ada158f45917dc4e34eb80d265325b3c3}{parse\+\_\+data} (char $\ast$line\+\_\+buffer, const char $\ast$s)
+\begin{DoxyCompactList}\small\item\em Parsea cada linea del documento y guarda los valores en una estructura \hyperlink{struct_estacion}{Estacion}. \end{DoxyCompactList}\item 
+void \hyperlink{parse__functions_8h_a281ae745df4815d5fae395908b8c7466}{load\+\_\+file} (char $\ast$inname, struct \hyperlink{struct_estacion}{Estacion} $\ast$estaciones\mbox{[}\hyperlink{estaciones_8h_adc191ed392ba6fcf613758c38745aff2}{M\+A\+X\+\_\+\+E\+S\+T\+A\+C\+I\+O\+N\+ES}\mbox{]})
+\begin{DoxyCompactList}\small\item\em Cargar en un arreglo los datos del documento. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Funciones para el parseo de datos. 
+
+
+
+\subsection{Function Documentation}
+\index{parse\+\_\+functions.\+h@{parse\+\_\+functions.\+h}!char\+\_\+to\+\_\+fecha@{char\+\_\+to\+\_\+fecha}}
+\index{char\+\_\+to\+\_\+fecha@{char\+\_\+to\+\_\+fecha}!parse\+\_\+functions.\+h@{parse\+\_\+functions.\+h}}
+\subsubsection[{\texorpdfstring{char\+\_\+to\+\_\+fecha(const char $\ast$input)}{char_to_fecha(const char *input)}}]{\setlength{\rightskip}{0pt plus 5cm}struct tm char\+\_\+to\+\_\+fecha (
+\begin{DoxyParamCaption}
+\item[{const char $\ast$}]{input}
+\end{DoxyParamCaption}
+)}\hypertarget{parse__functions_8h_a941f0fea8416ea7bcb37eafb3b70c264}{}\label{parse__functions_8h_a941f0fea8416ea7bcb37eafb3b70c264}
+
+
+Convierte char del documento a formato fecha. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em input} & dato a convertir \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+tm estructura Fecha 
+\end{DoxyReturn}
+\index{parse\+\_\+functions.\+h@{parse\+\_\+functions.\+h}!load\+\_\+file@{load\+\_\+file}}
+\index{load\+\_\+file@{load\+\_\+file}!parse\+\_\+functions.\+h@{parse\+\_\+functions.\+h}}
+\subsubsection[{\texorpdfstring{load\+\_\+file(char $\ast$inname, struct Estacion $\ast$estaciones[M\+A\+X\+\_\+\+E\+S\+T\+A\+C\+I\+O\+N\+ES])}{load_file(char *inname, struct Estacion *estaciones[MAX_ESTACIONES])}}]{\setlength{\rightskip}{0pt plus 5cm}void load\+\_\+file (
+\begin{DoxyParamCaption}
+\item[{char $\ast$}]{inname, }
+\item[{struct {\bf Estacion} $\ast$}]{estaciones\mbox{[}\+M\+A\+X\+\_\+\+E\+S\+T\+A\+C\+I\+O\+N\+E\+S\mbox{]}}
+\end{DoxyParamCaption}
+)}\hypertarget{parse__functions_8h_a281ae745df4815d5fae395908b8c7466}{}\label{parse__functions_8h_a281ae745df4815d5fae395908b8c7466}
+
+
+Cargar en un arreglo los datos del documento. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em inname} & nombre del docuemnto \\
+\hline
+{\em estaciones} & arreglo de punteros a estaciones \\
+\hline
+\end{DoxyParams}
+\index{parse\+\_\+functions.\+h@{parse\+\_\+functions.\+h}!parse\+\_\+data@{parse\+\_\+data}}
+\index{parse\+\_\+data@{parse\+\_\+data}!parse\+\_\+functions.\+h@{parse\+\_\+functions.\+h}}
+\subsubsection[{\texorpdfstring{parse\+\_\+data(char $\ast$line\+\_\+buffer, const char $\ast$s)}{parse_data(char *line_buffer, const char *s)}}]{\setlength{\rightskip}{0pt plus 5cm}struct {\bf Estacion} $\ast$ parse\+\_\+data (
+\begin{DoxyParamCaption}
+\item[{char $\ast$}]{line\+\_\+buffer, }
+\item[{const char $\ast$}]{s}
+\end{DoxyParamCaption}
+)}\hypertarget{parse__functions_8h_ada158f45917dc4e34eb80d265325b3c3}{}\label{parse__functions_8h_ada158f45917dc4e34eb80d265325b3c3}
+
+
+Parsea cada linea del documento y guarda los valores en una estructura \hyperlink{struct_estacion}{Estacion}. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em line\+\_\+buffer} & linea del documento \\
+\hline
+{\em s} & delimitador por el cual parsear \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+\hyperlink{struct_estacion}{Estacion} puntero a estacion con los datos del archivo 
+\end{DoxyReturn}
+\index{parse\+\_\+functions.\+h@{parse\+\_\+functions.\+h}!set\+\_\+datos\+\_\+estaciones@{set\+\_\+datos\+\_\+estaciones}}
+\index{set\+\_\+datos\+\_\+estaciones@{set\+\_\+datos\+\_\+estaciones}!parse\+\_\+functions.\+h@{parse\+\_\+functions.\+h}}
+\subsubsection[{\texorpdfstring{set\+\_\+datos\+\_\+estaciones(char $\ast$token, int contador, struct Estacion $\ast$est)}{set_datos_estaciones(char *token, int contador, struct Estacion *est)}}]{\setlength{\rightskip}{0pt plus 5cm}void set\+\_\+datos\+\_\+estaciones (
+\begin{DoxyParamCaption}
+\item[{char $\ast$}]{token, }
+\item[{int}]{contador, }
+\item[{struct {\bf Estacion} $\ast$}]{est}
+\end{DoxyParamCaption}
+)}\hypertarget{parse__functions_8h_a8b28b5556f3cb1d40937eeb4973076c1}{}\label{parse__functions_8h_a8b28b5556f3cb1d40937eeb4973076c1}
+
+
+Setea la variable de la estacion según el numero de campo en que se encuentra. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em token} & dato a validar y setear \\
+\hline
+{\em contador} & numero de campo \\
+\hline
+{\em est} & Estructura de estacion a la cual insertar dato \\
+\hline
+\end{DoxyParams}
+\index{parse\+\_\+functions.\+h@{parse\+\_\+functions.\+h}!test\+\_\+dato@{test\+\_\+dato}}
+\index{test\+\_\+dato@{test\+\_\+dato}!parse\+\_\+functions.\+h@{parse\+\_\+functions.\+h}}
+\subsubsection[{\texorpdfstring{test\+\_\+dato(char $\ast$token)}{test_dato(char *token)}}]{\setlength{\rightskip}{0pt plus 5cm}char $\ast$ test\+\_\+dato (
+\begin{DoxyParamCaption}
+\item[{char $\ast$}]{token}
+\end{DoxyParamCaption}
+)}\hypertarget{parse__functions_8h_a70e062b64ab650efa8e3205ea07b82fa}{}\label{parse__functions_8h_a70e062b64ab650efa8e3205ea07b82fa}
+
+
+Valida si existe dado util. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em token} & dato a validar \\
+\hline
+\end{DoxyParams}
