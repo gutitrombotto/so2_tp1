@@ -1,3 +1,6 @@
+/*! \file socket_functions.h
+    \brief Funciones para el uso de sockets
+*/
 #ifndef	SOCKET_FUNCTIONS_H
 #define	SOCKET_FUNCTIONS_H
 
@@ -22,13 +25,22 @@
 #include <stdio.h>
 #include <unistd.h>
 
+/*!	\fn void socket_r(int newsockfd, char * buffer)
+	\brief Lectura del socket
+	\param newsockfd Filedescriptor del socket
+	\param buffer cadena de caracterres donde se guarda lo leido
+*/   
+void socket_r(int newsockfd, char * buffer);
 
-void escribir_socket(int newsockfd, char * buffer);
-
-void leer_socket(int sockfd, char * buffer);
+/*!	\fn void socket_w(int sockfd, char * buffer)
+	\brief Escribe en el socket
+	\param newsockfd Filedescriptor del socket
+	\param buffer cadena de caracterres a enviar
+*/   
+void socket_w(int sockfd, char * buffer);
 
 /*!	\fn char** split_line(char * line)
-	\brief Separa la linea leida de la consola
+	\brief Separa la linea pasada como parametro
 	\param  line linea de comando
 	\return arreglo de punteros con todos los valores de la linea de comando
 */

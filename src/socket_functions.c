@@ -1,5 +1,5 @@
 #include "../includes/socket_functions.h"
-void escribir_socket(int newsockfd, char * buffer){
+void socket_w(int newsockfd, char * buffer){
 	//printf("%s\n",buffer );
 	int n;
 	int datalen = strlen(buffer); // # of bytes in data
@@ -10,7 +10,7 @@ void escribir_socket(int newsockfd, char * buffer){
 	if (n < 0) perror("ERROR writing to socket");
 }
 
-void leer_socket(int sockfd, char * buffer){
+void socket_r(int sockfd, char * buffer){
 	memset( buffer, '\0', TAM );
 	int buflen;
 	int n;

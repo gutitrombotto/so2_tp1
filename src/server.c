@@ -71,7 +71,7 @@ int main(int argc, char **argv)
 			{	
 
 				/*Lectura de contraseña y testeo de contraseña*/
-				leer_socket(newsockfd,buffer);
+				socket_r(newsockfd,buffer);
 				printf( "PROCESO %d. ", getpid() );
 				printf( "Recibí: %s", buffer );
 
@@ -79,12 +79,12 @@ int main(int argc, char **argv)
 				printf("%s\n", buffer);
 				if(!strcmp(buffer,"contra")){
 					char * contra_ok = "Contraseña correcta. Estas autenticado\n";
-					escribir_socket(newsockfd,contra_ok);
+					socket_w(newsockfd,contra_ok);
 					
 					break;
 				} else {
 					char * contra_mal = "contraseña incorrecta";
-					escribir_socket(newsockfd,contra_mal);
+					socket_w(newsockfd,contra_mal);
 
 				}
 				/* FIN Lectura de contraseña y testeo de contraseña*/
@@ -100,26 +100,29 @@ int main(int argc, char **argv)
 
 			while(1)
 			{
+				printf("%s\n", estaciones[4]->estacion);
 				/* Envio de la lista de comandos*/
 				lista = "\nlistar \n descargar no_estación \n diario_precipitacion no_estación \n mensual_precipitacion no_estación \n mensual_precipitacion no_estación \n promedio variable \n desconectar \n";
 				//printf("%s\n", lista);
-				escribir_socket(newsockfd,lista);
+				socket_w(newsockfd,lista);
 
 				/*Leo que comando mandó el cliente*/
-				leer_socket(newsockfd,buffer);
+				socket_r(newsockfd,buffer);
 				printf(" Recibí : %s\n", buffer);
 				//buffer[strlen(buffer)-1] = '\0';
 				char ** line_parsed;
 				line_parsed = split_line(buffer);
 
 				printf("%s\n", line_parsed[0]);
+				//printf("%s\n", line_parsed[1]);
 				
 				c = test_commando(line_parsed[0]);
 
 				printf("%d\n", c);
+				int err = execute_task(c, line_parsed, estaciones);
 
-				execute_task(c, line_parsed);
-				escribir_socket(newsockfd, (char *)&c);
+				printf("%d\n", err);
+				//socket_w(newsockfd, (char *)&c);
 				
 				/*Fin de lectura del comando del cliente*/	
 						

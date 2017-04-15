@@ -1,3 +1,6 @@
+/*! \file estaciones.h
+    \brief Estructuras relacionadas a las ESTACIONES_H
+*/
 #ifndef	ESTACIONES_H
 #define	ESTACIONES_H
 

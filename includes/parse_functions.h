@@ -9,14 +9,15 @@
 #include <string.h>
 #include <errno.h>
 
+/*! \def BUFSIZE
+    \brief Tamaño de la linea de lectura de un archivo
+*/
 #define BUFSIZE 256
 
-#define MAX_BUFFER 2048
-/*! \def MAX_ESTACIONES
+/*! \def MAX_BUFFER
     \brief Cantidad de estaciones en el documento
 */
-
-#define NUM_CAMPOS 19
+#define MAX_BUFFER 2048
 
 /*!	\fn char * test_dato(char * token)
 	\brief Valida si existe dado util
@@ -48,5 +49,10 @@ void set_datos_estaciones(char * token,int contador, struct Estacion * est);
 */   
 struct Estacion *parse_data(char * line_buffer, const char *s);
 
+/*!	\fn void load_file(char *inname, struct Estacion *estaciones[MAX_ESTACIONES])
+	\brief Cargar en un arreglo los datos del documento
+	\param inname nombre del docuemnto
+	\param estaciones arreglo de punteros a estaciones
+*/ 
 void load_file(char *inname, struct Estacion *estaciones[MAX_ESTACIONES]);
 #endif
