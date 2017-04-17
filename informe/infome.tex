@@ -1,0 +1,261 @@
+% simple.tex - A simple article to illustrate document structure.
+
+% Andrew Roberts - June 2003
+
+\documentclass[10pt, a4paper,notitlepage]{article}
+\usepackage[spanish]{babel}%Para el español
+\usepackage[utf8]{inputenc}
+
+
+%\usepackage{times}
+\usepackage{color}
+\usepackage[dvipsnames]{xcolor}
+\usepackage{listings}
+\usepackage{textcomp}
+\usepackage{pdfpages}
+
+\usepackage{verbatim}
+
+\usepackage{amsmath}
+\usepackage{courier} %--lisitngs
+\usepackage{mathptmx} %-->TimesNewRoman
+
+\usepackage{caption}
+\DeclareCaptionFont{white}{\color{white}}
+\definecolor{dark-gray}{cmyk}{0,0,0,0.7}
+\DeclareCaptionFormat{listing}{\colorbox{dark-gray}{\parbox{\textwidth}{#1#2#3}}}
+\captionsetup[lstlisting]{format=listing,labelfont={white,sf},textfont={white,sf}}
+
+\usepackage{graphicx} % Required for including pictures
+
+\usepackage{float} % Allows putting an [H] in \begin{figure} to specify the exact location of the figure
+\usepackage{wrapfig} % Allows in-line images such as the example fish picture
+\graphicspath{{Imagenes/}} % Specifies the directory where pictures are stored
+
+\usepackage{xcolor}
+\definecolor{lbcolor}{rgb}{0.9,0.9,0.9}
+\lstset{
+backgroundcolor=\color{gray!20!white},
+    tabsize=2,
+    literate=%
+	{á}{{\'{a}}}1
+    {é}{{\'{e}}}1
+    {í}{{\'{i}}}1
+    {ó}{{\'{o}}}1
+    {ú}{{\'{u}}}1
+    {ñ}{{\~{n}}}1
+    {<}{{$<$}}1
+    {>}{{$>$}}1,
+%   rulecolor=,
+    %language=C,
+    %language=bash,
+    		linewidth=12.2cm,
+		belowcaptionskip=0.1\baselineskip,
+		xleftmargin=\parindent,        
+        %basicstyle=\scriptsize,
+        basicstyle=\footnotesize\bfseries\ttfamily\color{black!80!white},
+        upquote=true,
+        %aboveskip={1.5\baselineskip},
+        columns=fixed,
+        showstringspaces=false,
+        extendedchars=false,
+        breaklines=true,
+        prebreak = \raisebox{0ex}[0ex][0ex]{\ensuremath{\hookleftarrow}},
+	%frame=lines,
+        numbers=left,
+        showtabs=false,
+        showspaces=false,
+        showstringspaces=false,
+        identifierstyle=\ttfamily,
+        commentstyle=\color{orange!80!black},
+        keywordstyle=\bfseries\color[rgb]{0,0,1},
+        %commentstyle=\bfseries\color[rgb]{0.026,0.112,0.095},
+        %stringstyle=\bfseries\color[rgb]{0.627,0.126,0.941},
+        stringstyle=\bfseries\color{green!50!black},
+        numberstyle=\ttfamily\color[rgb]{0.205, 0.142, 0.73},
+%        \lstdefinestyle{C++}{language=C++,style=numbers}’.
+}
+\lstdefinelanguage{linux_bash}
+{ language=bash,%-->me baso en bash
+alsoletter={-},%-->me habilita (-) en medio de los keywords
+morekeywords={sudo,nano,apt-get,cd,ls,ln,mkdir,ifconfig,cp,wget,ppa:,add-apt-repository,install,a2ensite,service,curl},
+%sensitive=false,
+}
+\lstdefinelanguage{cisco}
+{
+alsoletter={-},%-->me habilita (-) en medio de los keywords
+keywords={enable,configure,terminal,interface,fastEthernet,ipv6,address,no,shutdown,route,running-config,startup-config,copy,exit,unicast-routing,brief},
+%sensitive=false,
+}
+
+\renewcommand{\lstlistingname}{Código}
+\renewcommand{\familydefault}{\rmdefault}
+\pretolerance=2000
+\tolerance=3000
+\newcommand{\HRule}{\rule{\linewidth}{0.5mm}} % Defines a new command for the horizontal lines, change thickness here
+\usepackage{hyperref}
+\hypersetup{%
+colorlinks=true,
+urlcolor=blue,
+urlbordercolor=blue,
+pdfborderstyle={/S/U/W 1}%
+}
+
+\begin{document}
+
+% Article top matter
+ \begin{figure}[H] 
+ 	\centering
+ 	\includegraphics[scale=0.9]{./imagenes/logo_facu.png}
+\end{figure}
+{\center
+	\huge
+	\textbf{CÁTEDRA SISTEMAS OPERATIVOS II\\}}
+
+{\center
+	\Large{Departamento de Computación	FCEFyN - UNC\\}}
+
+\title{%\HRule \\[0.4cm]		
+		{ \bfseries{ Gestion de AWS con Sockets}}\\[0.4cm]
+		%\HRule \\[1.5cm]
+		} %\LaTeX is a macro for printing the Latex logo
+\author{
+\textsc{Trombotto}, Agustin  {\small \texttt{Mat:39071116}}\\
+\href{mailto:gutitrombotto@gmail.com}{gutitrombotto@gmail.com}\\
+}
+%\affil{Facultad de Ciencias Exáctas, Físicas \& Naturales, Universidad Nacional de Córdoba, Argentina.}
+
+%\date{\today}  %\today is replaced with the current date
+%\maketitle
+{\let\newpage\relax\maketitle}
+
+
+{\center
+\textbf{Version del Documento} V1.0\\}
+%\clearpage
+\clearpage
+
+\section{Introducción}
+En la Provincia de Córdoba existen aproximadamente 400 estaciones hidrometeorológicas automáticas (AWS por sus siglas en inglés), de distintas marcas,modelos y configuraciones, que pertenecen a distintas redes, instituciones y organismos, desparramadas por todo el territorio provincial. Cada AWS consta de una
+serie de sensores (barómetro, termómetro, sensor de radiación solar, etc.), conectadoa un sistema de adquisición de datos, que toma medidas de los sensores (telemetría) un período determinado de tiempo.
+
+Para poder obtener datos de este sistema, se implementa un servidor el cual posee la informacion y un cliente que, al conectarse, puede obtener los datos de las estaciones mencionadas
+\subsubsection{Propósito}
+Se desarrolla un sistema de comunicacion mediante sockets implementados en lenguaje c. Clientes se conectan a un servidor el cual debe transferir informacion sobre las estaciones meteorologicas
+\subsubsection{Ambito del Sistema}
+Actualmente el software se puede ejecutar un servidor con localhost montado.
+\subsubsection{Definiciones, Acrónimos y Abreviaturas} 
+\subsubsection{Referencias}
+
+\subsubsection{Descripción General del Documento}
+Se detalla, en este documento los objetivos, el diseño e implementacion, los bugs del sistema y las conclusiones del mismo.
+\section{Descripción General}
+\subsubsection{Perspectiva del Producto }
+El producto consiste en la ejecucion de un programa cliente y un programa servidor.
+Una vez ejecutados, el cliente se conecta al servidor y le podŕa solicitar informacion sobre las estaciones meteorologicas en cuestion al servidor mediante las funciones proveídas por el mismo.
+El cliente puede ser ejecutado en cualquier dispositivo con una interfaz de comunicaciones. Se le debe establecer previamente el IP del dispositivo a la cual se conectará
+\subsubsection{Funciones del Producto}
+
+El software debe realizar la conexión, control y transferencia de datos telemétricos entre el un cliente y el servidor que contiene los
+datos de las AWS (arquitectura cliente servidor).
+\subsubsection{Características de los Usuarios }
+El usuario debe pedir un usuario y una contraseña al administrador del software el cual creará los datos necesarios para poder establecer la conexion.
+
+\subsubsection{Suposiciones y Dependencias}
+
+\subsubsection{Requisitos Futuros}
+La implementacion del sistema posee funcionalidades pendientes a saber:
+\begin{itemize}
+	\item Envio de prompt por parte del servidor al cliente 
+	\item Respuesta del servidor con la informacion correcta segun la funcion a ejecutar
+	\item Transladar y testear en código en un servidor remoto 
+	
+\end{itemize}
+\section{Requisitos Específicos}
+\begin{itemize}
+	\item Todos los procesos deben ser mono-thread
+	\item Uso de Cppcheck y la compilación con el uso de las flags de warning -Werror, -Wall y -pedantic
+	\item Proveer los archivos fuente, así como cualquier otro archivo asociado
+	a la compilación
+	
+\end{itemize}
+
+\subsubsection{Interfaces Externas}
+\subsubsection{Funciones}
+El servidor debe contar con las siguientes funcionalidades:
+\begin{itemize}
+	\item \textbf{listar:} muestra un listado de todas las estaciones que hay en la “base de datos”,
+	y muestra de que censores tiene datos.
+	\item \textbf{descargar no\_estación:} descarga un archivo con todos los datos de
+	no\_estación.
+	\item \textbf{diario\_precipitacion no\_estación:} muestra el acumulado diario de la variable
+	precipitación de no\_estación (no\_día: acumnulado mm).
+	\item\textbf{ mensual\_precipitacion no\_estación:} muestra el acumulado mensual de la
+	variable precipitación (no\_día: acumnulado mm).
+	\item \textbf{promedio variable:} muestra el promedio de todas las muestras de la variable
+	de cada estación (no\_estacion: promedio.
+	\item \textbf{desconectar:} termina la sesión del usuario.
+\end{itemize}
+
+Ademas el servidor debe proveer al cliente de un prompt de la forma:
+\textbf{usuario@servidor}
+
+Tambien un sistema de autenticacion, donde el usuario deberá incresar su contraseña y el servidor validar si pertenece a un usuario apto para ingresar.
+\subsubsection{Requisitos de Rendimiento}
+El sistema deberá tener la opcion de ser ejecutado en un servidor remoto en el cual se establece una direccion ip, se levanta un socket en el puerto 6020, y el cliente se deberá poder conectar a dicha ip con dicho puerto desde la misma red.
+\subsubsection{Restricciones de Diseño}
+\begin{itemize}
+	\item El sistema no podrá contar con un sistema de gestion de base de datos.
+	\item El sistema se correrá en un equipo que cuenta con las herramientas típicas de consola para el desarrollo de programas (Ej: gcc,make)
+\end{itemize}
+
+
+\subsubsection{Atributos del Sistema}
+\subsubsection{Otros Requisitos }
+Para la presentacion final, el desarrollo se correrá en una INTEL Galileo V1, sobre la cual se comprobará el prototipo.
+\section{ Diseño de solución}
+Para la realizan dos programas:
+\begin{itemize}
+	\item servidor.c : contiene toda la logica de interconexion con el cliente ademas de la forma de adquirir los datos telemetricos y la autenticacion del usuario
+	\item cliente.c: funciones de interaccion con el servidor asi tambien la forma de mostrar los resultados.
+\end{itemize}
+
+\subsubsection{Servidor}
+Se subdivide las funcionalidades realizadas en el servidor en modulos incluidos por el mismo de la siguiente manera:
+\begin{itemize}
+	\item server\_functions : contiene la implementacion de las funciones del producto
+	\item socket\_functions : funciones para enviar y recibir los datos
+	\item estaciones: posee estructuras de datos para el manejo de la informacion de las estaciones meteorologicas
+	\item parse\_functions: funciones para obtener los datos del archivo
+\end{itemize}
+\subsubsection{Cliente}
+\begin{itemize}
+	\item cliente\_info
+	\item socket\_functions : funciones para enviar y recibir los datos
+\end{itemize}
+
+Para mas informacion de la implementacion del software ver la documentacion en la carpeta "Docs"
+%\section*{Sección sin numeración}
+%Este es el cuerpo de la sección del trabajo.
+%\subsection*{Subsección sin numeración}
+%Este es el cuerpo de la sub-sección de la sección anterior.
+%\subsubsection*{Subsubsección sin numeración}
+%Este es el cuerpo de la sub-sección de la subsección anterior.
+
+
+
+\section{Implementación y Resultados}
+Actualmente el software no se encuentra con los resultados acorde a los requerimientos del sistema. Las funciones del servidor estan implementadas en el servidor pero no se transfieren al cliente aun. Se puede ver la obtencion de datos en la siguiente figura:
+
+
+\section{Conclusiones}
+
+\section{Apendice}
+
+\begin{thebibliography}{100} % 100 is a random guess of the total number of
+%references
+\bibitem{Comer2014} Douglas E. Comer, ``Internetworking With TCP/IP," \emph{Vol I: Principles, Protocols, and Arquitecture}, pp. 473-480, Sixth Edition 2014.
+\end{thebibliography}
+
+
+\end{document}
