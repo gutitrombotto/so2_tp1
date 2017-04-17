@@ -1,0 +1,25 @@
+\BOOKMARK [1][-]{section.1}{Introducci\363n}{}% 1
+\BOOKMARK [2][-]{subsubsection.1.0.1}{Prop\363sito}{section.1}% 2
+\BOOKMARK [3][-]{subsubsection.1.0.2}{Ambito del Sistema}{subsubsection.1.0.1}% 3
+\BOOKMARK [3][-]{subsubsection.1.0.3}{Definiciones, Acr\363nimos y Abreviaturas}{subsubsection.1.0.1}% 4
+\BOOKMARK [3][-]{subsubsection.1.0.4}{Referencias}{subsubsection.1.0.1}% 5
+\BOOKMARK [3][-]{subsubsection.1.0.5}{Descripci\363n General del Documento}{subsubsection.1.0.1}% 6
+\BOOKMARK [1][-]{section.2}{Descripci\363n General}{}% 7
+\BOOKMARK [2][-]{subsubsection.2.0.1}{Perspectiva del Producto }{section.2}% 8
+\BOOKMARK [3][-]{subsubsection.2.0.2}{Funciones del Producto}{subsubsection.2.0.1}% 9
+\BOOKMARK [3][-]{subsubsection.2.0.3}{Caracter\355sticas de los Usuarios }{subsubsection.2.0.1}% 10
+\BOOKMARK [3][-]{subsubsection.2.0.4}{Suposiciones y Dependencias}{subsubsection.2.0.1}% 11
+\BOOKMARK [3][-]{subsubsection.2.0.5}{Requisitos Futuros}{subsubsection.2.0.1}% 12
+\BOOKMARK [1][-]{section.3}{Requisitos Espec\355ficos}{}% 13
+\BOOKMARK [2][-]{subsubsection.3.0.1}{Interfaces Externas}{section.3}% 14
+\BOOKMARK [3][-]{subsubsection.3.0.2}{Funciones}{subsubsection.3.0.1}% 15
+\BOOKMARK [3][-]{subsubsection.3.0.3}{Requisitos de Rendimiento}{subsubsection.3.0.1}% 16
+\BOOKMARK [3][-]{subsubsection.3.0.4}{Restricciones de Dise\361o}{subsubsection.3.0.1}% 17
+\BOOKMARK [3][-]{subsubsection.3.0.5}{Atributos del Sistema}{subsubsection.3.0.1}% 18
+\BOOKMARK [3][-]{subsubsection.3.0.6}{Otros Requisitos }{subsubsection.3.0.1}% 19
+\BOOKMARK [1][-]{section.4}{ Dise\361o de soluci\363n}{}% 20
+\BOOKMARK [2][-]{subsubsection.4.0.1}{Servidor}{section.4}% 21
+\BOOKMARK [3][-]{subsubsection.4.0.2}{Cliente}{subsubsection.4.0.1}% 22
+\BOOKMARK [1][-]{section.5}{Implementaci\363n y Resultados}{}% 23
+\BOOKMARK [1][-]{section.6}{Conclusiones}{}% 24
+\BOOKMARK [1][-]{section.7}{Apendice}{}% 25
