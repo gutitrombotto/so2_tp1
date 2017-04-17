@@ -1,0 +1,107 @@
+.TH "includes/socket_functions.h" 3 "Sat Apr 15 2017" "Version V1.0" "Gestion de AWS con Sockets - TP1 SOII" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+includes/socket_functions.h \- Funciones para el uso de sockets\&.  
+
+.SH SYNOPSIS
+.br
+.PP
+\fC#include <sys/types\&.h>\fP
+.br
+\fC#include <sys/socket\&.h>\fP
+.br
+\fC#include <netinet/in\&.h>\fP
+.br
+\fC#include <string\&.h>\fP
+.br
+\fC#include <stdlib\&.h>\fP
+.br
+\fC#include <stdio\&.h>\fP
+.br
+\fC#include <unistd\&.h>\fP
+.br
+
+.SS "Macros"
+
+.in +1c
+.ti -1c
+.RI "#define \fBTAM\fP   256"
+.br
+.ti -1c
+.RI "#define \fBTOKEN_DELIM\fP   ' \\t\\r\\n\\a@:'"
+.br
+.RI "\fIDelimitadores de la linea de comandos\&. \fP"
+.ti -1c
+.RI "#define \fBTOKEN_BUFSIZE\fP   64"
+.br
+.RI "\fITamaño maximo del buffer para palabras de consola\&. \fP"
+.in -1c
+.SS "Functions"
+
+.in +1c
+.ti -1c
+.RI "void \fBsocket_r\fP (int newsockfd, char *buffer)"
+.br
+.RI "\fILectura del socket\&. \fP"
+.ti -1c
+.RI "void \fBsocket_w\fP (int sockfd, char *buffer)"
+.br
+.RI "\fIEscribe en el socket\&. \fP"
+.ti -1c
+.RI "char ** \fBsplit_line\fP (char *line)"
+.br
+.RI "\fISepara la linea pasada como parametro\&. \fP"
+.in -1c
+.SH "Detailed Description"
+.PP 
+Funciones para el uso de sockets\&. 
+
+
+.SH "Function Documentation"
+.PP 
+.SS "void socket_r (int newsockfd, char * buffer)"
+
+.PP
+Lectura del socket\&. 
+.PP
+\fBParameters:\fP
+.RS 4
+\fInewsockfd\fP Filedescriptor del socket 
+.br
+\fIbuffer\fP cadena de caracterres donde se guarda lo leido 
+.RE
+.PP
+
+.SS "void socket_w (int sockfd, char * buffer)"
+
+.PP
+Escribe en el socket\&. 
+.PP
+\fBParameters:\fP
+.RS 4
+\fInewsockfd\fP Filedescriptor del socket 
+.br
+\fIbuffer\fP cadena de caracterres a enviar 
+.RE
+.PP
+
+.SS "char ** split_line (char * line)"
+
+.PP
+Separa la linea pasada como parametro\&. Separa la linea leida de la consola\&.
+.PP
+\fBParameters:\fP
+.RS 4
+\fIline\fP linea de comando 
+.RE
+.PP
+\fBReturns:\fP
+.RS 4
+arreglo de punteros con todos los valores de la linea de comando 
+.RE
+.PP
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for Gestion de AWS con Sockets - TP1 SOII from the source code\&.

@@ -1,0 +1,42 @@
+\hypertarget{estaciones_8h}{}\section{includes/estaciones.h File Reference}
+\label{estaciones_8h}\index{includes/estaciones.\+h@{includes/estaciones.\+h}}
+
+
+Estructuras relacionadas a las E\+S\+T\+A\+C\+I\+O\+N\+E\+S\+\_\+H.  
+
+
+{\ttfamily \#include $<$time.\+h$>$}\\*
+Include dependency graph for estaciones.\+h\+:
+% FIG 0
+This graph shows which files directly or indirectly include this file\+:
+% FIG 1
+\subsection*{Data Structures}
+\begin{DoxyCompactItemize}
+\item 
+struct \hyperlink{struct_estacion}{Estacion}
+\begin{DoxyCompactList}\small\item\em Guarda los valores de las estaciones. \end{DoxyCompactList}\item 
+struct \hyperlink{struct_variables}{Variables}
+\begin{DoxyCompactList}\small\item\em Guarda los valores de la variables de una estacion. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define {\bfseries \+\_\+\+X\+O\+P\+E\+N\+\_\+\+S\+O\+U\+R\+CE}\hypertarget{estaciones_8h_a78c99ffd76a7bb3c8c74db76207e9ab4}{}\label{estaciones_8h_a78c99ffd76a7bb3c8c74db76207e9ab4}
+
+\item 
+\#define {\bfseries \+\_\+\+G\+N\+U\+\_\+\+S\+O\+U\+R\+CE}\hypertarget{estaciones_8h_a369266c24eacffb87046522897a570d5}{}\label{estaciones_8h_a369266c24eacffb87046522897a570d5}
+
+\item 
+\#define \hyperlink{estaciones_8h_a4329592041c7e050a1200dc24f864d45}{N\+U\+M\+\_\+\+E\+S\+T\+A\+C\+I\+O\+N\+ES}~5\hypertarget{estaciones_8h_a4329592041c7e050a1200dc24f864d45}{}\label{estaciones_8h_a4329592041c7e050a1200dc24f864d45}
+
+\begin{DoxyCompactList}\small\item\em Cantidad de estaciones. \end{DoxyCompactList}\item 
+\#define \hyperlink{estaciones_8h_adc191ed392ba6fcf613758c38745aff2}{M\+A\+X\+\_\+\+E\+S\+T\+A\+C\+I\+O\+N\+ES}~18303\hypertarget{estaciones_8h_adc191ed392ba6fcf613758c38745aff2}{}\label{estaciones_8h_adc191ed392ba6fcf613758c38745aff2}
+
+\begin{DoxyCompactList}\small\item\em Cantidad de datos de estaciones en el documento. \end{DoxyCompactList}\item 
+\#define \hyperlink{estaciones_8h_af1840b2bd84391c9a7a6a238141ba64a}{N\+U\+M\+\_\+\+C\+A\+M\+P\+OS}~19\hypertarget{estaciones_8h_af1840b2bd84391c9a7a6a238141ba64a}{}\label{estaciones_8h_af1840b2bd84391c9a7a6a238141ba64a}
+
+\begin{DoxyCompactList}\small\item\em Cantidad de \hyperlink{struct_variables}{Variables} de las estaciones. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Estructuras relacionadas a las E\+S\+T\+A\+C\+I\+O\+N\+E\+S\+\_\+H. 
+

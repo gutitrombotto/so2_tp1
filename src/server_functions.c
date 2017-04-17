@@ -1,6 +1,7 @@
 #include "../includes/estaciones.h"
 #include "../includes/server_functions.h"
 
+
 int test_datos(struct Estacion *estacion)
 {
 	float uno = -1.000000;
@@ -64,6 +65,7 @@ int test_datos(struct Estacion *estacion)
 	return 0;
 }
 
+
 int listar_estaciones(struct Estacion *estaciones[MAX_ESTACIONES])
 {
 	for (int i = 0; i < MAX_ESTACIONES; ++i)
@@ -95,6 +97,7 @@ int listar_estaciones(struct Estacion *estaciones[MAX_ESTACIONES])
 	return 0;
 }
 
+ 
 int precipitacion_diario(struct Estacion *estaciones[MAX_ESTACIONES], int numero_estacion)
 {
 	//float acumulado_precipitacion = 0.0;
@@ -674,6 +677,7 @@ int descargar(struct Estacion *estaciones[MAX_ESTACIONES], int numero_estacion)
 
 int test_commando(char * buffer)
 {
+	printf("%s\n", buffer);
 	int ret;
 	if(!strcmp(buffer, "listar"))
 	{
@@ -707,37 +711,45 @@ int test_commando(char * buffer)
 
 }
 
-void execute_task(int c, char ** line_parsed, struct Estacion *estaciones[MAX_ESTACIONES])
+int execute_task(int c, char ** line_parsed, struct Estacion *estaciones[MAX_ESTACIONES])
 {
+	printf("Entre a EJECUTAR tarea\n");
 	if (c == 1)
 	{
-	listar_estaciones(estaciones) 
 	/*EJECUTAR Listar*/
-		
+	int err = listar_estaciones(estaciones);
+	if (!err) return 0;
+	else return -1;		
 	} else if (c == 2)
 	{
-	descargar(estaciones, line_parsed[1])
+	//descargar(estaciones, line_parsed[1]);
 	/*EJECUTAR descargar*/
+		return 0;
 
 	}else if (c == 3) 
 	{
 	/*EJECUTAR diario_precipitacion*/
-		precipitacion_diario(estaciones, line_parsed[1])
-
-	}else if (c == 2)
+	//	precipitacion_diario(estaciones, line_parsed[1]);
+		return 0;
+	}else if (c == 4)
 	{ 
 	/*EJECUTAR mensual_precipitacion*/
-		mensual_precipitacion(estaciones, line_parsed[1])
+	//	mensual_precipitacion(estaciones, line_parsed[1]);
+		return 0;
 	}
-	else if (c == 2)
+	else if (c == 5)
 	{
 	/*EJECUTAR promedio*/
-		promedio_variables(estaciones)
+	//	promedio_variables(estaciones);
+		return 0;
 
 	}
-	else if (c == 2)
+	else if (c == 6)
 	{
 	/*EJECUTAR desconectar*/
+		return 0;
 
+	} else {
+		return -1;
 	}
 }

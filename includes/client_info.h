@@ -1,3 +1,6 @@
+/*! \file client_info.h
+    \brief Datos y estructuras relacionados al Cliente
+*/
 #ifndef	CLIENT_INFO_H
 #define	CLIENT_INFO_H
 /*! \def KNRM

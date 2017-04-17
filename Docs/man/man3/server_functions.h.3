@@ -1,0 +1,218 @@
+.TH "includes/server_functions.h" 3 "Sat Apr 15 2017" "Version V1.0" "Gestion de AWS con Sockets - TP1 SOII" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+includes/server_functions.h \- Funciones del servidor\&.  
+
+.SH SYNOPSIS
+.br
+.PP
+\fC#include '\&.\&./includes/estaciones\&.h'\fP
+.br
+\fC#include <time\&.h>\fP
+.br
+\fC#include <stdlib\&.h>\fP
+.br
+\fC#include <stdio\&.h>\fP
+.br
+\fC#include <string\&.h>\fP
+.br
+
+.SS "Functions"
+
+.in +1c
+.ti -1c
+.RI "int \fBtest_datos\fP (struct \fBEstacion\fP *estacion)"
+.br
+.RI "\fIVerifica si hay datos en cada variable de la estacion\&. \fP"
+.ti -1c
+.RI "int \fBlistar_estaciones\fP (struct \fBEstacion\fP *estaciones[\fBMAX_ESTACIONES\fP])"
+.br
+.RI "\fIMuestra en pantalla las estaciones y si poseen datos en sus variables\&. \fP"
+.ti -1c
+.RI "int \fBprecipitacion_diario\fP (struct \fBEstacion\fP *estaciones[\fBMAX_ESTACIONES\fP], int numero_estacion)"
+.br
+.RI "\fIMuestra el acumulado por dia de la estacion pasada como parametro\&. \fP"
+.ti -1c
+.RI "int \fBmensual_precipitacion\fP (struct \fBEstacion\fP *estaciones[\fBMAX_ESTACIONES\fP], int numero_estacion)"
+.br
+.RI "\fIMuestra el acumulado por mes de la estacion pasada como parametro\&. \fP"
+.ti -1c
+.RI "int \fBvalor_variable\fP (struct \fBVariables\fP *variables, struct \fBEstacion\fP *estacion)"
+.br
+.RI "\fIAcumula el valor des las variables de la estacion\&. \fP"
+.ti -1c
+.RI "void \fBmostrar_variables\fP (struct \fBVariables\fP *variables)"
+.br
+.RI "\fIMuestra los valores de la estructura variables de una estacion\&. \fP"
+.ti -1c
+.RI "void \fBvalidar_datos\fP (struct \fBEstacion\fP *estacion)"
+.br
+.ti -1c
+.RI "int \fBpromedio_variables\fP (struct \fBEstacion\fP *estaciones[\fBMAX_ESTACIONES\fP])"
+.br
+.RI "\fIAcumula el valor des las variables de la estacion\&. \fP"
+.ti -1c
+.RI "void \fBset_promedio\fP (struct \fBVariables\fP *variables, int contador_estaciones)"
+.br
+.RI "\fIEstablece el promedio de cada variables segun el contador de estaciones\&. \fP"
+.ti -1c
+.RI "int \fBdescargar\fP (struct \fBEstacion\fP *estaciones[\fBMAX_ESTACIONES\fP], int numero_estacion)"
+.br
+.RI "\fICrea un archivo con la estacio y sus valores\&. \fP"
+.ti -1c
+.RI "int \fBtest_commando\fP (char *buffer)"
+.br
+.RI "\fIVerifica el valor pasado como parametro y devuelve un entero segun la accion a realizar\&. \fP"
+.ti -1c
+.RI "int \fBexecute_task\fP (int c, char **line_parsed, struct \fBEstacion\fP *estaciones[\fBMAX_ESTACIONES\fP])"
+.br
+.RI "\fIEjecuta una funcion del servidor según el numero de tarea\&. \fP"
+.in -1c
+.SH "Detailed Description"
+.PP 
+Funciones del servidor\&. 
+
+
+.SH "Function Documentation"
+.PP 
+.SS "int descargar (struct \fBEstacion\fP * estaciones[MAX_ESTACIONES], int numero_estacion)"
+
+.PP
+Crea un archivo con la estacio y sus valores\&. 
+.PP
+\fBParameters:\fP
+.RS 4
+\fI*estaciones\fP estructura con las variables de una estacion 
+.br
+\fInumero_estacion\fP indice de la estacion de la cual sus datos se guardaran en archivo 
+.RE
+.PP
+
+.SS "execute_task (int c, char ** line_parsed, struct \fBEstacion\fP * estaciones[MAX_ESTACIONES])"
+
+.PP
+Ejecuta una funcion del servidor según el numero de tarea\&. 
+.PP
+\fBParameters:\fP
+.RS 4
+\fIc\fP numero de tarea a realizar 
+.br
+\fI**line_parsed\fP parametros para las tareas a realizar 
+.br
+\fI*estaciones\fP datos de las estaciones 
+.RE
+.PP
+
+.SS "int listar_estaciones (struct \fBEstacion\fP * estaciones[MAX_ESTACIONES])"
+
+.PP
+Muestra en pantalla las estaciones y si poseen datos en sus variables\&. 
+.PP
+\fBParameters:\fP
+.RS 4
+\fI*estaciones\fP arreglo que contiene los datos de las estaciones 
+.RE
+.PP
+
+.SS "int mensual_precipitacion (struct \fBEstacion\fP * estaciones[MAX_ESTACIONES], int numero_estacion)"
+
+.PP
+Muestra el acumulado por mes de la estacion pasada como parametro\&. 
+.PP
+\fBParameters:\fP
+.RS 4
+\fI*estaciones\fP arreglo que contiene los datos de las estaciones 
+.br
+\fInumero_estacion\fP 
+.RE
+.PP
+
+.SS "void mostrar_variables (struct \fBVariables\fP * variables)"
+
+.PP
+Muestra los valores de la estructura variables de una estacion\&. 
+.PP
+\fBParameters:\fP
+.RS 4
+\fIvariables\fP variables de una estacion 
+.RE
+.PP
+
+.SS "int precipitacion_diario (struct \fBEstacion\fP * estaciones[MAX_ESTACIONES], int numero_estacion)"
+
+.PP
+Muestra el acumulado por dia de la estacion pasada como parametro\&. 
+.PP
+\fBParameters:\fP
+.RS 4
+\fI*estaciones\fP arreglo que contiene los datos de las estaciones 
+.br
+\fInumero_estacion\fP 
+.RE
+.PP
+
+.SS "int promedio_variables (struct \fBEstacion\fP * estaciones[MAX_ESTACIONES])"
+
+.PP
+Acumula el valor des las variables de la estacion\&. 
+.PP
+\fBParameters:\fP
+.RS 4
+\fI*estacion\fP datos de una estacion 
+.br
+\fIvariables\fP variables de la estacion pasada como paramtro\&. 
+.RE
+.PP
+
+.SS "void set_promedio (struct \fBVariables\fP * variables, int contador_estaciones)"
+
+.PP
+Establece el promedio de cada variables segun el contador de estaciones\&. 
+.PP
+\fBParameters:\fP
+.RS 4
+\fI*variables\fP estructura con las variables de una estacion 
+.br
+\fIcontador_estaciones\fP indice de la estacion a la cual pertenece las varia 
+.RE
+.PP
+
+.SS "int test_commando (char * buffer)"
+
+.PP
+Verifica el valor pasado como parametro y devuelve un entero segun la accion a realizar\&. 
+.PP
+\fBParameters:\fP
+.RS 4
+\fI*buffer\fP linea a validar 
+.RE
+.PP
+
+.SS "int test_datos (struct \fBEstacion\fP * estacion)"
+
+.PP
+Verifica si hay datos en cada variable de la estacion\&. 
+.PP
+\fBParameters:\fP
+.RS 4
+\fI*estacion\fP estacion a la cual se validan los datos 
+.RE
+.PP
+
+.SS "int valor_variable (struct \fBVariables\fP * variables, struct \fBEstacion\fP * estacion)"
+
+.PP
+Acumula el valor des las variables de la estacion\&. 
+.PP
+\fBParameters:\fP
+.RS 4
+\fI*estacion\fP datos de una estacion 
+.br
+\fIvariables\fP variables de la estacion pasada como paramtro\&. 
+.RE
+.PP
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for Gestion de AWS con Sockets - TP1 SOII from the source code\&.

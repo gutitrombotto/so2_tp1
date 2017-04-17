@@ -1,0 +1,104 @@
+\hypertarget{socket__functions_8h}{}\section{includes/socket\+\_\+functions.h File Reference}
+\label{socket__functions_8h}\index{includes/socket\+\_\+functions.\+h@{includes/socket\+\_\+functions.\+h}}
+
+
+Funciones para el uso de sockets.  
+
+
+{\ttfamily \#include $<$sys/types.\+h$>$}\\*
+{\ttfamily \#include $<$sys/socket.\+h$>$}\\*
+{\ttfamily \#include $<$netinet/in.\+h$>$}\\*
+{\ttfamily \#include $<$string.\+h$>$}\\*
+{\ttfamily \#include $<$stdlib.\+h$>$}\\*
+{\ttfamily \#include $<$stdio.\+h$>$}\\*
+{\ttfamily \#include $<$unistd.\+h$>$}\\*
+Include dependency graph for socket\+\_\+functions.\+h\+:
+% FIG 0
+\subsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define {\bfseries T\+AM}~256\hypertarget{socket__functions_8h_ae0b4816fb45161ef9da5e6d6134ee28a}{}\label{socket__functions_8h_ae0b4816fb45161ef9da5e6d6134ee28a}
+
+\item 
+\#define \hyperlink{socket__functions_8h_a2527dfcffb9e43a47e9bfb062a4cef15}{T\+O\+K\+E\+N\+\_\+\+D\+E\+L\+IM}~\char`\"{} \textbackslash{}t\textbackslash{}r\textbackslash{}n\textbackslash{}a@\+:\char`\"{}\hypertarget{socket__functions_8h_a2527dfcffb9e43a47e9bfb062a4cef15}{}\label{socket__functions_8h_a2527dfcffb9e43a47e9bfb062a4cef15}
+
+\begin{DoxyCompactList}\small\item\em Delimitadores de la linea de comandos. \end{DoxyCompactList}\item 
+\#define \hyperlink{socket__functions_8h_aa988867e3d8b029fff8d123b20852f5e}{T\+O\+K\+E\+N\+\_\+\+B\+U\+F\+S\+I\+ZE}~64\hypertarget{socket__functions_8h_aa988867e3d8b029fff8d123b20852f5e}{}\label{socket__functions_8h_aa988867e3d8b029fff8d123b20852f5e}
+
+\begin{DoxyCompactList}\small\item\em Tamaño maximo del buffer para palabras de consola. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \hyperlink{socket__functions_8h_a53456d77feaf989229da94507bd37eca}{socket\+\_\+r} (int newsockfd, char $\ast$buffer)
+\begin{DoxyCompactList}\small\item\em Lectura del socket. \end{DoxyCompactList}\item 
+void \hyperlink{socket__functions_8h_a2beb6fdd978a571228c0f779aba538d5}{socket\+\_\+w} (int sockfd, char $\ast$buffer)
+\begin{DoxyCompactList}\small\item\em Escribe en el socket. \end{DoxyCompactList}\item 
+char $\ast$$\ast$ \hyperlink{socket__functions_8h_a1f1804b333ed064f276628d7bfa31bfa}{split\+\_\+line} (char $\ast$line)
+\begin{DoxyCompactList}\small\item\em Separa la linea pasada como parametro. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Funciones para el uso de sockets. 
+
+
+
+\subsection{Function Documentation}
+\index{socket\+\_\+functions.\+h@{socket\+\_\+functions.\+h}!socket\+\_\+r@{socket\+\_\+r}}
+\index{socket\+\_\+r@{socket\+\_\+r}!socket\+\_\+functions.\+h@{socket\+\_\+functions.\+h}}
+\subsubsection[{\texorpdfstring{socket\+\_\+r(int newsockfd, char $\ast$buffer)}{socket_r(int newsockfd, char *buffer)}}]{\setlength{\rightskip}{0pt plus 5cm}void socket\+\_\+r (
+\begin{DoxyParamCaption}
+\item[{int}]{newsockfd, }
+\item[{char $\ast$}]{buffer}
+\end{DoxyParamCaption}
+)}\hypertarget{socket__functions_8h_a53456d77feaf989229da94507bd37eca}{}\label{socket__functions_8h_a53456d77feaf989229da94507bd37eca}
+
+
+Lectura del socket. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em newsockfd} & Filedescriptor del socket \\
+\hline
+{\em buffer} & cadena de caracterres donde se guarda lo leido \\
+\hline
+\end{DoxyParams}
+\index{socket\+\_\+functions.\+h@{socket\+\_\+functions.\+h}!socket\+\_\+w@{socket\+\_\+w}}
+\index{socket\+\_\+w@{socket\+\_\+w}!socket\+\_\+functions.\+h@{socket\+\_\+functions.\+h}}
+\subsubsection[{\texorpdfstring{socket\+\_\+w(int sockfd, char $\ast$buffer)}{socket_w(int sockfd, char *buffer)}}]{\setlength{\rightskip}{0pt plus 5cm}void socket\+\_\+w (
+\begin{DoxyParamCaption}
+\item[{int}]{sockfd, }
+\item[{char $\ast$}]{buffer}
+\end{DoxyParamCaption}
+)}\hypertarget{socket__functions_8h_a2beb6fdd978a571228c0f779aba538d5}{}\label{socket__functions_8h_a2beb6fdd978a571228c0f779aba538d5}
+
+
+Escribe en el socket. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em newsockfd} & Filedescriptor del socket \\
+\hline
+{\em buffer} & cadena de caracterres a enviar \\
+\hline
+\end{DoxyParams}
+\index{socket\+\_\+functions.\+h@{socket\+\_\+functions.\+h}!split\+\_\+line@{split\+\_\+line}}
+\index{split\+\_\+line@{split\+\_\+line}!socket\+\_\+functions.\+h@{socket\+\_\+functions.\+h}}
+\subsubsection[{\texorpdfstring{split\+\_\+line(char $\ast$line)}{split_line(char *line)}}]{\setlength{\rightskip}{0pt plus 5cm}char $\ast$$\ast$ split\+\_\+line (
+\begin{DoxyParamCaption}
+\item[{char $\ast$}]{line}
+\end{DoxyParamCaption}
+)}\hypertarget{socket__functions_8h_a1f1804b333ed064f276628d7bfa31bfa}{}\label{socket__functions_8h_a1f1804b333ed064f276628d7bfa31bfa}
+
+
+Separa la linea pasada como parametro. 
+
+Separa la linea leida de la consola.
+
+
+\begin{DoxyParams}{Parameters}
+{\em line} & linea de comando \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+arreglo de punteros con todos los valores de la linea de comando 
+\end{DoxyReturn}

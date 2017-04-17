@@ -102,12 +102,8 @@ struct Estacion *parse_data(char * line_buffer, const char *s){
 	struct Estacion *est= malloc(sizeof(struct Estacion));
 	
 
-	//memset(est, 0, sizeof(struct Estacion));
-	//memset(est->fecha, '\0', sizeof(token
 	while( token != NULL ) 
 	{
-				//printf( " %s\n", token );
-				//printf("%d\n", contador);
 		set_datos_estaciones(token,contador,est);
 		contador ++;
 		token = strtok(NULL, s);
