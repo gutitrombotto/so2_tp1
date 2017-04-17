@@ -1,4 +1,4 @@
-.TH "includes/server_functions.h" 3 "Sat Apr 15 2017" "Version V1.0" "Gestion de AWS con Sockets - TP1 SOII" \" -*- nroff -*-
+.TH "includes/server_functions.h" 3 "Sun Apr 16 2017" "Version V1.0" "Gestion de AWS con Sockets - TP1 SOII" \" -*- nroff -*-
 .ad l
 .nh
 .SH NAME
@@ -48,6 +48,7 @@ includes/server_functions.h \- Funciones del servidor\&.
 .ti -1c
 .RI "void \fBvalidar_datos\fP (struct \fBEstacion\fP *estacion)"
 .br
+.RI "\fIVerifica si las variables de la estacion tienen datos\&. \fP"
 .ti -1c
 .RI "int \fBpromedio_variables\fP (struct \fBEstacion\fP *estaciones[\fBMAX_ESTACIONES\fP])"
 .br
@@ -197,6 +198,17 @@ Verifica si hay datos en cada variable de la estacion\&.
 \fBParameters:\fP
 .RS 4
 \fI*estacion\fP estacion a la cual se validan los datos 
+.RE
+.PP
+
+.SS "void validar_datos (struct \fBEstacion\fP * estacion)"
+
+.PP
+Verifica si las variables de la estacion tienen datos\&. 
+.PP
+\fBParameters:\fP
+.RS 4
+\fI*estacion\fP datos de la estacion a verificar 
 .RE
 .PP
 

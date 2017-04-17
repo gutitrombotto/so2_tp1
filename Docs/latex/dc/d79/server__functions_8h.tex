@@ -27,9 +27,8 @@ int \hyperlink{server__functions_8h_affe9c49a3a78d364002ac21a9cd15505}{valor\+\_
 \begin{DoxyCompactList}\small\item\em Acumula el valor des las variables de la estacion. \end{DoxyCompactList}\item 
 void \hyperlink{server__functions_8h_a812891e18524b4d904f643c8188618f4}{mostrar\+\_\+variables} (struct \hyperlink{struct_variables}{Variables} $\ast$variables)
 \begin{DoxyCompactList}\small\item\em Muestra los valores de la estructura variables de una estacion. \end{DoxyCompactList}\item 
-void {\bfseries validar\+\_\+datos} (struct \hyperlink{struct_estacion}{Estacion} $\ast$estacion)\hypertarget{server__functions_8h_a79b422e0e0a5a6d92b80ebb63080541c}{}\label{server__functions_8h_a79b422e0e0a5a6d92b80ebb63080541c}
-
-\item 
+void \hyperlink{server__functions_8h_a79b422e0e0a5a6d92b80ebb63080541c}{validar\+\_\+datos} (struct \hyperlink{struct_estacion}{Estacion} $\ast$estacion)
+\begin{DoxyCompactList}\small\item\em Verifica si las variables de la estacion tienen datos. \end{DoxyCompactList}\item 
 int \hyperlink{server__functions_8h_aaafea40cf099ed628546162c4131e408}{promedio\+\_\+variables} (struct \hyperlink{struct_estacion}{Estacion} $\ast$estaciones\mbox{[}\hyperlink{estaciones_8h_adc191ed392ba6fcf613758c38745aff2}{M\+A\+X\+\_\+\+E\+S\+T\+A\+C\+I\+O\+N\+ES}\mbox{]})
 \begin{DoxyCompactList}\small\item\em Acumula el valor des las variables de la estacion. \end{DoxyCompactList}\item 
 void \hyperlink{server__functions_8h_ab6902d2d3e04026c25b72b61c39c1f57}{set\+\_\+promedio} (struct \hyperlink{struct_variables}{Variables} $\ast$variables, int contador\+\_\+estaciones)
@@ -226,6 +225,22 @@ Verifica si hay datos en cada variable de la estacion.
 
 \begin{DoxyParams}{Parameters}
 {\em $\ast$estacion} & estacion a la cual se validan los datos \\
+\hline
+\end{DoxyParams}
+\index{server\+\_\+functions.\+h@{server\+\_\+functions.\+h}!validar\+\_\+datos@{validar\+\_\+datos}}
+\index{validar\+\_\+datos@{validar\+\_\+datos}!server\+\_\+functions.\+h@{server\+\_\+functions.\+h}}
+\subsubsection[{\texorpdfstring{validar\+\_\+datos(struct Estacion $\ast$estacion)}{validar_datos(struct Estacion *estacion)}}]{\setlength{\rightskip}{0pt plus 5cm}void validar\+\_\+datos (
+\begin{DoxyParamCaption}
+\item[{struct {\bf Estacion} $\ast$}]{estacion}
+\end{DoxyParamCaption}
+)}\hypertarget{server__functions_8h_a79b422e0e0a5a6d92b80ebb63080541c}{}\label{server__functions_8h_a79b422e0e0a5a6d92b80ebb63080541c}
+
+
+Verifica si las variables de la estacion tienen datos. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em $\ast$estacion} & datos de la estacion a verificar \\
 \hline
 \end{DoxyParams}
 \index{server\+\_\+functions.\+h@{server\+\_\+functions.\+h}!valor\+\_\+variable@{valor\+\_\+variable}}

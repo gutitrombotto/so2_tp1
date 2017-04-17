@@ -130,8 +130,8 @@ Functions</h2></td></tr>
 <tr class="memitem:a812891e18524b4d904f643c8188618f4"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../dc/d79/server__functions_8h.html#a812891e18524b4d904f643c8188618f4">mostrar_variables</a> (struct <a class="el" href="../../d4/dde/struct_variables.html">Variables</a> *variables)</td></tr>
 <tr class="memdesc:a812891e18524b4d904f643c8188618f4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Muestra los valores de la estructura variables de una estacion.  <a href="#a812891e18524b4d904f643c8188618f4">More...</a><br /></td></tr>
 <tr class="separator:a812891e18524b4d904f643c8188618f4"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a79b422e0e0a5a6d92b80ebb63080541c"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a79b422e0e0a5a6d92b80ebb63080541c"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>validar_datos</b> (struct <a class="el" href="../../d2/d1b/struct_estacion.html">Estacion</a> *estacion)</td></tr>
+<tr class="memitem:a79b422e0e0a5a6d92b80ebb63080541c"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../dc/d79/server__functions_8h.html#a79b422e0e0a5a6d92b80ebb63080541c">validar_datos</a> (struct <a class="el" href="../../d2/d1b/struct_estacion.html">Estacion</a> *estacion)</td></tr>
+<tr class="memdesc:a79b422e0e0a5a6d92b80ebb63080541c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Verifica si las variables de la estacion tienen datos.  <a href="#a79b422e0e0a5a6d92b80ebb63080541c">More...</a><br /></td></tr>
 <tr class="separator:a79b422e0e0a5a6d92b80ebb63080541c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aaafea40cf099ed628546162c4131e408"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../dc/d79/server__functions_8h.html#aaafea40cf099ed628546162c4131e408">promedio_variables</a> (struct <a class="el" href="../../d2/d1b/struct_estacion.html">Estacion</a> *estaciones[<a class="el" href="../../d4/d00/estaciones_8h.html#adc191ed392ba6fcf613758c38745aff2">MAX_ESTACIONES</a>])</td></tr>
 <tr class="memdesc:aaafea40cf099ed628546162c4131e408"><td class="mdescLeft">&#160;</td><td class="mdescRight">Acumula el valor des las variables de la estacion.  <a href="#aaafea40cf099ed628546162c4131e408">More...</a><br /></td></tr>
@@ -449,6 +449,30 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>validar_datos</b> (st
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">*estacion</td><td>estacion a la cual se validan los datos </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a class="anchor" id="a79b422e0e0a5a6d92b80ebb63080541c"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void validar_datos </td>
+          <td>(</td>
+          <td class="paramtype">struct <a class="el" href="../../d2/d1b/struct_estacion.html">Estacion</a> *&#160;</td>
+          <td class="paramname"><em>estacion</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Verifica si las variables de la estacion tienen datos. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">*estacion</td><td>datos de la estacion a verificar </td></tr>
   </table>
   </dd>
 </dl>

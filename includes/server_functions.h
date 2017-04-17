@@ -50,7 +50,11 @@ int valor_variable (struct Variables *variables, struct Estacion * estacion);
 	\param variables variables de una estacion
 */ 
 void mostrar_variables (struct Variables *variables);
+/*!	\fn void validar_datos(struct Estacion *estacion)
 
+	\brief Verifica si las variables de la estacion tienen datos
+	\param *estacion datos de la estacion a verificar
+*/
 void validar_datos(struct Estacion *estacion);
 
 /*!	\fn int promedio_variables(struct Estacion *estaciones[MAX_ESTACIONES])
